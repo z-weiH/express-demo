@@ -6,6 +6,18 @@ import router from './router'
 
 Vue.config.productionTip = false
 
+// axios
+import axios from 'axios'
+import './axios'
+Vue.prototype.$http = axios;
+
+// element-ui
+import ElementUI from 'element-ui'
+// 样式
+import 'element-ui/lib/theme-chalk/index.css';
+// 装载 element ui
+Vue.use(ElementUI);
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

@@ -13,7 +13,8 @@ function resolve (dir) {
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
-    app: './src/main.js'
+    // 增加 babel-polyfill 解决ie 11下 页面报错不显示 问题 支持es6
+    app: ['./node_modules/babel-polyfill/dist/polyfill.js','./src/main.js']
   },
   output: {
     path: config.build.assetsRoot,

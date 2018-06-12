@@ -1,25 +1,37 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
 
+// 页面
+import login from '@/views/login'
+import HelloWorld from '@/components/HelloWorld'
 import notFound from '@/views/404'
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   mode: 'history',
   routes: [
     {
       path : '/',
-      component: HelloWorld
+      redirect: '/login',
     },
     {
-      path: '/helloWord',
-      component: HelloWorld
+      path : '/login',
+      component: login,
+    },
+    {
+      path: '/404',
+      component: notFound,
     },
     {
       path: '*',
-      component: notFound
+      redirect: '/404',
+    },
+
+
+    {
+      path: '/helloWord',
+      component: HelloWorld,
     },
   ]
 })
