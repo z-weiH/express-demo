@@ -46,11 +46,11 @@
 				rules : {
 					loginName : [
 						{ required : true , message : '请输入账号' , trigger : 'blur'},
-						{required : true , pattern : /^\d{11}$/ , message : '手机号码长度为11位' }
+						/* {required : true , pattern : /^\d{11}$/ , message : '手机号码长度为11位' } */
 					],
 					passWord : [
 						{ required : true , message : '请输入密码' , trigger : 'blur'},
-						{ required : true , min : 6 , message : '密码长度最少为6位'}
+						/* { required : true , min : 6 , message : '密码长度最少为6位'} */
 					],
 				},
 			}
@@ -59,7 +59,19 @@
 			handleSubmit() {
 				this.$refs.ruleForm.validate((valid) => {
 					if (valid) {
-            
+						let formData = new FormData();
+						formData.append('name','张三');
+            this.$http({
+							method : 'post',
+							url : '/login.json',
+							data : {
+								userName : this.ruleForm.loginName,
+								passWord : this.ruleForm.passWord,
+							},
+						}).then((res) => {
+							this.$message.success('登录成功');
+							this.$router.push('/list');
+						});
           }
 				});
 			},

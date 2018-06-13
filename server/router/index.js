@@ -1,19 +1,6 @@
-import connection from './../mysql'
-const fs = require('fs')
+import fs from 'fs'
 let router = (app) => {
   
-  /* app.post('/logindo.htm', function(req, res) {
-    console.log(connection);
-    res.send('啦啦啦');
-  }); */
-
-  app.post('/userAdd',function(req,res) {
-    connection.query("SELECT * FROM `user`",(err,result) => {
-      console.log(result);
-      //res.send('新增成功');
-    });
-  });
-
   // router 由前端 控制 ， 重定向到 index.html
   app.get('*', function(req, res) {  
     fs.readFile('./../web/dist/index.html', 'utf-8', (err, content) => {

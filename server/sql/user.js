@@ -1,9 +1,7 @@
 
 let sqlMap = {
-  user: {
-    userQuery : 'SELECT * FROM user',
-    userInset : 'INSERT INTO `user` (userName,passWord)  VALUES (?,?);',
-  }
+  userQuery : 'SELECT * FROM user WHERE userName="?" AND passWord="?";',
+  userInset : 'INSERT INTO `user` (userName,passWord)  VALUES (?,?);',
 };
 
 // 查询 SELECT * FROM `user`

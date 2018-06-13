@@ -1,5 +1,6 @@
 import axios from 'axios'
 import qs from 'qs' //formdata序列化
+import { Message } from 'element-ui';
 
 
 
@@ -21,12 +22,16 @@ axios.interceptors.request.use((rqs) => {
 });
 
 // 响应拦截
-axios.interceptors.response.use((res) => { // 状态码 200
+axios.interceptors.response.use((res) => { // 状态码 200 回调
+  if(res.data.code !== '0000'){
+    Message.error(res.data.message);
+    return Promise.reject(res);
+  }
   return res;
 
 }, (err) => { // 状态码不是200 回调
   if (err.response) {
-    console.log('网络出错');
+    Message.error('网络出错');
   }
   return Promise.reject(err);
 });
