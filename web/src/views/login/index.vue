@@ -84,7 +84,7 @@
 	background-color: #2d3a4b;
 	.form-box{
 		box-sizing: border-box;
-		position: absolute;
+		position: fixed;
     top: 120px;
     width: 520px;
 		padding: 35px 35px 15px 35px;
