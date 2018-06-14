@@ -8,9 +8,10 @@ import {
 } from './../components/requestType'
 
 import resFn from './../components/response'
+import uuid from 'node-uuid'
 
 let api = (app,connection) => {
-  // 根据 用户名 和 密码 查询 用户
+  // 用户登录
   app.post('/login.json',urlencodedParser,function(req,res) {
     let {userName , passWord} = req.body;
     connection.query(`SELECT * FROM user WHERE userName="${userName}" AND passWord="${passWord}";`,(err,result) => {
@@ -24,7 +25,7 @@ let api = (app,connection) => {
 
   // 用户新增
   app.post('/userInset.json',urlencodedParser,function(req,res) {
-    let {userName,passWord} = req.body;
+    let {userName,passWord,nickName} = req.body;
     // 查询用户是否 存在
     connection.query(`SELECT * FROM user WHERE userName="${userName}";`,(err,result) => {
       if(result.length > 0){
@@ -35,48 +36,63 @@ let api = (app,connection) => {
         res.send(resFn(obj));
         return;
       }
-      connection.query(`INSERT INTO user (userName,passWord)  VALUES ("${userName}","${passWord}");`,(err,result) => {
+      connection.query(`INSERT INTO user (id,userName,passWord,nickName)  VALUES ("${uuid.v4()}","${userName}","${passWord}","${nickName}");`,(err,result) => {
         let obj = {
           code : 'success',
           message : '用户新增成功',
         };
-        res.send(obj);
+        res.send(resFn(obj));
       });
     });
   });
 
   // 用户修改
   app.post('/userUpdata.json',urlencodedParser,function(req,res) {
-    let {userName,passWord} = req.body;
-    connection.query(`UPDATE user SET userName="${userName}",passWord="${passWord}" WHERE userName="${userName}" AND passWord="${passWord}";`,(err,result) => {
-      console.log(result,'lalal');
+    let {userName,passWord,nickName,id} = req.body;
+    connection.query(`UPDATE user SET userName="${userName}",passWord="${passWord}",nickName="${nickName}" WHERE id="${id}";`,(err,result) => {
       let type = result.affectedRows === 1 ? true : false;
       let obj = {
         code : type ? 'success' : 'error',
         message : type ? '用户修改成功' : '用户未找到',
       };
-      res.send(obj);
+      res.send(resFn(obj));
     });
   });
 
-  // 用户修改
+  // 用户删除
   app.post('/userDelete.json',urlencodedParser,function(req,res) {
-    let {userName,passWord} = req.body;
-    connection.query(`DELETE from user WHERE userName='${userName}' AND passWord="${passWord}";`,(err,result) => {
+    let {id} = req.body;
+    connection.query(`DELETE from user WHERE id='${id}';`,(err,result) => {
       let type = result.affectedRows === 1 ? true : false;
       let obj = {
         code : type ? 'success' : 'error',
         message : type ? '删除成功' : '用户未找到',
       };
-      res.send(obj);
+      res.send(resFn(obj));
     });
   });
 
   // 查询所有用户
   app.post('/queryUserList.json',function(req,res) {
     connection.query(`SELECT * FROM user;`,(err,result) => {
+      result = result.map((v) => {
+        delete v.passWord;
+        return v;
+      });
       let obj = {
         result : result,
+      };
+      res.send(resFn(obj));
+    });
+  });
+
+  // 根据用户 id 查询 用户数据
+  app.post('/queryUserDetail',urlencodedParser,function(req,res) {
+    let {id} = req.body;
+    connection.query(`SELECT * FROM user WHERE id="${id}";`,(err,result) => {
+      let obj = {
+        code : 'success',
+        result : result[0],
       };
       res.send(resFn(obj));
     });

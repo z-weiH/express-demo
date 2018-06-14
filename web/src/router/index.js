@@ -2,9 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 // 页面
-import login from '@/views/login'
-import notFound from '@/views/404'
-import List from '@/views/list'
 
 Vue.use(Router);
 /* 
@@ -23,19 +20,28 @@ export default new Router({
     },
     {
       path : '/login',
-      component : login,
+      component : resolve => require(['@/views/login'], resolve), 
     },
     {
       path: '/404',
-      component : notFound,
+      component : resolve => require(['@/views/404'], resolve), 
     },
     {
       path : '*',
       redirect : '/404',
     },
     {
-      path : '/list',
-      component : List,
+      path : '',
+      component : resolve => require(['@/views/layout'], resolve), 
+      children : [
+        {
+          path : '/list',
+          component : resolve => require(['@/views/list'], resolve), 
+          meta : {
+            name : '/list',
+          },
+        },
+      ],
     },
   ]
 })

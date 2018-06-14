@@ -15,6 +15,8 @@ Vue.prototype.$http = axios;
 import ElementUI from 'element-ui'
 // 样式
 import 'element-ui/lib/theme-chalk/index.css';
+import '@/assets/css/index.scss'
+import '@/assets/font/iconfont/iconfont.css'
 // 装载 element ui
 Vue.use(ElementUI);
 

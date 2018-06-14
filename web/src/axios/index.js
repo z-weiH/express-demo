@@ -27,7 +27,7 @@ axios.interceptors.response.use((res) => { // 状态码 200 回调
     Message.error(res.data.message);
     return Promise.reject(res);
   }
-  return res;
+  return res.data;
 
 }, (err) => { // 状态码不是200 回调
   if (err.response) {
