@@ -49,16 +49,27 @@ let api = (app,connection) => {
   // 用户修改
   app.post('/userUpdata.json',urlencodedParser,function(req,res) {
     let {userName,passWord,nickName,id} = req.body;
-    connection.query(`UPDATE user SET userName="${userName}",passWord="${passWord}",nickName="${nickName}" WHERE id="${id}";`,(err,result) => {
-      let type = result.affectedRows === 1 ? true : false;
-      let obj = {
-        code : type ? 'success' : 'error',
-        message : type ? '用户修改成功' : '用户未找到',
-      };
-      res.send(resFn(obj));
+    // 判断用户是否存在
+    connection.query(`SELECT * FROM user WHERE userName="${userName}";`,(err,result) => {
+      if(result.length > 0){
+        let obj = {
+          code : 'error',
+          message : '用户已存在',
+        };
+        res.send(resFn(obj));
+        return;
+      }
+      connection.query(`UPDATE user SET userName="${userName}",passWord="${passWord}",nickName="${nickName}" WHERE id="${id}";`,(err,result) => {
+        let type = result.affectedRows === 1 ? true : false;
+        let obj = {
+          code : type ? 'success' : 'error',
+          message : type ? '用户修改成功' : '用户未找到',
+        };
+        res.send(resFn(obj));
+      });
     });
   });
-
+  
   // 用户删除
   app.post('/userDelete.json',urlencodedParser,function(req,res) {
     let {id} = req.body;
