@@ -32,10 +32,8 @@
     },
     data() {
       return {
-        tableData : [{
-          userName : 'fdfdf',
-          passWord : 'Mim',
-        }]
+        tableData : [
+        ]
       }
     },
     mounted() {

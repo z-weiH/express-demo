@@ -60,6 +60,11 @@
             href : '/login',
             id : 2,
           },
+          {
+            label : 'Demo',
+            href : '/demo',
+            id : 3,
+          },
         ],
       }
     },
