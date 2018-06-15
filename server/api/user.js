@@ -15,11 +15,29 @@ let api = (app,connection) => {
   app.post('/login.json',urlencodedParser,function(req,res) {
     let {userName , passWord} = req.body;
     connection.query(`SELECT * FROM user WHERE userName="${userName}" AND passWord="${passWord}";`,(err,result) => {
-      let obj = {
-        code : result.length > 0 ? 'success' : 'notFound',
-        message : result.length > 0 ? '' : '用户名或密码错误',
-      };
-      res.send(resFn(obj));
+      if(result.length === 0){
+        let obj = {
+          code : 'error',
+          message : '用户名或密码错误',
+        };
+        res.send(resFn(obj));
+      }else{
+        let loginResult = {
+          userName : result[0].userName,
+          nickName : result[0].nickName,
+        }
+        let obj = {
+          code : 'success',
+          result : loginResult,
+        };
+        // 登录成功 设置 用户 id
+        req.session.userId = result[0].id;
+        // 设置用户 是否已经登录过
+        res.cookie('isLogin','1');
+        res.send(resFn(obj));
+      }
+      
+      
     });
   });
 
@@ -107,6 +125,14 @@ let api = (app,connection) => {
       };
       res.send(resFn(obj));
     });
+  });
+
+  // 用户退出 
+  app.post('/signOut.json',function(req,res) {
+    req.session.userId = '';
+    res.send(resFn({
+      code : 'success',
+    }));
   });
 
 };

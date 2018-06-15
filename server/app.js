@@ -1,6 +1,22 @@
 import express from 'express'
 let app = express();
 
+// 使用 session 中间件 存储用户 session
+import session from 'express-session'
+app.use(session({
+  secret :  'fjdkr_9527', // 对session id 相关的cookie 进行签名
+  //name : 'testId', // cookie 别名
+  resave : false,
+  saveUninitialized: false, // 是否保存未初始化的会话
+  cookie : {
+    maxAge : 1000 * 60 * 30, // 设置 session 的有效时间，单位毫秒
+  },
+}));
+
+// 获取 用户 cookie
+import cookieParser from 'cookie-parser'
+app.use(cookieParser());
+
  // 加载所有 静态资源
 app.use(express.static('./../web/dist'));
 

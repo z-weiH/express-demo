@@ -1,6 +1,7 @@
 import axios from 'axios'
 import qs from 'qs' //formdata序列化
 import { Message } from 'element-ui';
+import $router from '@/router'
 
 
 
@@ -25,6 +26,15 @@ axios.interceptors.request.use((rqs) => {
 axios.interceptors.response.use((res) => { // 状态码 200 回调
   if(res.data.code !== '0000'){
     Message.error(res.data.message);
+
+    // 登录超时
+    if(res.data.code === '1008'){
+      $router.push('/login');
+    // 用户未登录
+    }else if(res.data.code === '1007') {
+      $router.push('/login');
+    }
+
     return Promise.reject(res);
   }
   return res.data;

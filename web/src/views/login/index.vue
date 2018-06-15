@@ -66,6 +66,9 @@
 							},
 						}).then((res) => {
 							this.$message.success('登录成功');
+							// 存用户信息
+							localStorage.setItem('loginInfo',JSON.stringify(res.result));
+							
 							this.$router.push('/list');
 						});
           }
