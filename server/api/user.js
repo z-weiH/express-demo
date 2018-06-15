@@ -51,7 +51,7 @@ let api = (app,connection) => {
     let {userName,passWord,nickName,id} = req.body;
     // 判断用户是否存在
     connection.query(`SELECT * FROM user WHERE userName="${userName}";`,(err,result) => {
-      if(result.length > 0){
+      if(result.length > 0 && result[0].id !== id){
         let obj = {
           code : 'error',
           message : '用户已存在',
