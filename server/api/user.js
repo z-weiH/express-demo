@@ -129,6 +129,9 @@ let api = (app,connection) => {
 
   // 用户退出 
   app.post('/signOut.json',function(req,res) {
+    // 清除 cookie
+    res.clearCookie('isLogin');
+    // 清除 session userIn
     req.session.userId = '';
     res.send(resFn({
       code : 'success',

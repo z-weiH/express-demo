@@ -17,8 +17,13 @@
   export default {
     data() {
       return {
-        nickName : JSON.parse(localStorage.getItem('loginInfo')).nickName,
+        nickName : '',
       }
+    },
+    mounted() {
+      try{
+        this.nickName = JSON.parse(localStorage.getItem('loginInfo')).nickName
+      }catch(err) {}
     },
     methods : {
       handleClick(val) {

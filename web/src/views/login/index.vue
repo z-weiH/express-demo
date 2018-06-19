@@ -102,7 +102,7 @@
 		.el-input input{
 			background-color: transparent;
 			border: transparent;
-			padding: 12px 5px 12px 40px;
+			padding-left: 40px;
     	color: #eee;
 		}
 		.el-input__prefix{

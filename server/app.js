@@ -24,7 +24,7 @@ app.use(express.static('./../web/dist'));
 import router from './router'
 router(app); 
 
-// 加载所有 接口
+// 加载所有 api 接口
 import fs from 'fs'
 import connection from './mysql'
 let readdir = (path,type) => {

@@ -56,11 +56,6 @@
             // icon : 'el-icon-location',
           },
           {
-            label : '登录页',
-            href : '/login',
-            id : 2,
-          },
-          {
             label : 'Demo',
             href : '/demo',
             id : 3,
