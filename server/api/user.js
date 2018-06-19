@@ -102,14 +102,25 @@ let api = (app,connection) => {
   });
 
   // 查询所有用户
-  app.post('/queryUserList.json',function(req,res) {
+  app.post('/queryUserList.json',urlencodedParser,function(req,res) {
+    let {currentPage,pageSize} = req.body;
     connection.query(`SELECT * FROM user;`,(err,result) => {
       result = result.map((v) => {
         delete v.passWord;
         return v;
       });
+      let list = [];
+      // 手动 分页
+      for(let i = (currentPage - 1) * pageSize ; i < (currentPage - 1) * pageSize + pageSize ; i ++ ){
+        if(result[i]){
+          list.push(result[i]);
+        }
+      }
       let obj = {
-        result : result,
+        result : {
+          list : list,
+          total : result.length,
+        },
       };
       res.send(resFn(obj));
     });

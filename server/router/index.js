@@ -1,5 +1,6 @@
 import fs from 'fs'
 import resFn from './../components/response'
+import {ENV} from './../env'
 let router = (app) => {
   
   // router 由前端 控制 ， 重定向到 index.html
@@ -39,6 +40,10 @@ let router = (app) => {
 
   // 请求拦截器
   app.all('/*', function(req, res, next){
+    if(ENV === 'dev'){
+      next();
+      return;
+    }
     let userId = req.session.userId;
     // 不需要校验的请求
     let requestUrl = ['/login.json','/signOut.json'];

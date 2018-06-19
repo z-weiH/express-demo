@@ -20,6 +20,18 @@
       </el-table-column>
     </el-table>
 
+    <!-- 分页 -->
+    <el-pagination
+      class="mt-10 mb-10"
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="currentPage"
+      :page-sizes="[10, 20, 30, 40]"
+      :page-size="10"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="total">
+    </el-pagination>
+
     <mdialog @successCBK="initTableList" ref="dialog"></mdialog>
   </div>
 </template>
@@ -32,22 +44,49 @@
     },
     data() {
       return {
-        tableData : [
-        ]
+        tableData : [],
+        // 数据总数
+        total : 0,
+        // 当前页数
+        currentPage : 1,
+        // 每页数量
+        pageSize : 10,
       }
     },
     mounted() {
       this.initTableList();
     },
     methods : {
+      // 表格相关 start
+
+      // 初始化 表格数据
       initTableList() {
         this.$http({
           method : 'post',
           url : '/queryUserList.json',
+          data : {
+            pageSize : this.pageSize,
+            currentPage : this.currentPage,
+          },
         }).then((res) => {
-          this.tableData = res.result;
+          this.tableData = res.result.list;
+          this.total = res.result.total;
         });
       },
+      // 页数 change
+      handleSizeChange(val) {
+        this.pageSize = val;
+        this.currentPage = 1;
+        this.initTableList();
+      },
+      // 分页 change
+      handleCurrentChange(val) {
+        this.currentPage = val; 
+        this.initTableList();
+      },
+
+      // 表格相关 end
+
       // 点击新增
       handleAdd() {
         this.$refs.dialog.show('add');
