@@ -1,13 +1,13 @@
 
 import sql from './../sql/user'
 
-import {
+let {
   jsonParser,
   urlencodedParser,
   multipartMiddleware,
-} from './../components/requestType'
+} = import_module('/components/requestType');
 
-import resFn from './../components/response'
+let resFn = import_module('/components/response')
 import uuid from 'node-uuid'
 
 let api = (app,connection) => {
