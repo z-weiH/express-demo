@@ -61,7 +61,44 @@ router.beforeEach((to, from, next) => {
   // 返回顶部
   window.scrollTo(0, 0);
   NProgress.start();
-  next();
+
+  // 权限判断 start
+  let exclude = ['login','404',''];
+  let path = to.path.slice(1);
+
+  if(exclude.indexOf(path) !== -1){
+    next()
+  }else{
+    // 环境 判断
+    if(process.env.NODE_ENV === 'development'){
+      next();
+    }else{
+      next();
+      /* try {
+        // 当前用户 所有权限树
+        let treeList = [];
+        let tree = JSON.parse(localStorage.getItem('menuInfoList'));
+        // 递归
+        let fn = (tree) => {
+          tree.map((v, k) => {
+            v.children.map((v1, k1) => {
+              if (v1.children) {
+                fn(v1);
+              } else {
+                treeList.push(v1.menuUrl);
+              }
+            });
+          });
+        }
+        fn(tree);
+        
+      // 当前未登录
+      } catch (err) {
+        router.replace(`/login?returnUrl=${router.history.pending.path}`);
+      } */
+    }
+  }
+  // 权限判断 end
 });
 
 /* 后置钩子 */

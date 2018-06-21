@@ -33,7 +33,7 @@ let api = (app,connection) => {
         // 登录成功 设置 用户 id
         req.session.userId = result[0].id;
         // 设置用户 是否已经登录过
-        res.cookie('isLogin','1');
+        res.cookie('isLogin','1',{ expires: new Date(Date.now() + 1000 * 60 * 30)});
         res.send(resFn(obj));
       }
       
