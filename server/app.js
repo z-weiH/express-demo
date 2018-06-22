@@ -28,7 +28,6 @@ router(app);
 
 // 加载所有 api 接口
 import fs from 'fs'
-import connection from './mysql'
 let readdir = (path,type) => {
   // 读取文件夹 以及 文件
   fs.readdir(path,(err, files,callback) => {
@@ -37,7 +36,7 @@ let readdir = (path,type) => {
         readdir(path + '/' + v,type);
       }else{
         var file = require(path + '/' +  v);
-        file(app,connection);
+        file(app);
       }
     });
   });

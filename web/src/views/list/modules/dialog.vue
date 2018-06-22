@@ -70,7 +70,7 @@
         if(type === 'edit'){
           this.$http({
             method : 'post',
-            url : '/queryUserDetail',
+            url : '/queryUserDetail.json',
             data : {
               id : row.id,
             },

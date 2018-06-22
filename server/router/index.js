@@ -1,6 +1,6 @@
 import fs from 'fs'
-import resFn from './../components/response'
-import {ENV} from './../env'
+import baseResult from './../components/response'
+import evn_var from './../env.js'
 let router = (app) => {
   
   // router 由前端 控制 ， 重定向到 index.html
@@ -40,7 +40,7 @@ let router = (app) => {
 
   // 请求拦截器
   app.all('/*', function(req, res, next){
-    if(ENV === 'dev'){
+    if(evn_var.ENV === 'dev'){
       next();
       return;
     }
@@ -53,14 +53,14 @@ let router = (app) => {
       next();
     // 用户未登录
     }else if(!isLogin){
-      res.send(resFn({
+      res.send(baseResult({
         code : 'login',
         message : '请登录',
       }));
     // 登录超时      
     }else if(!userId) {
       res.clearCookie('isLogin');
-      res.send(resFn({
+      res.send(baseResult({
         code : 'overTime',
         message : '请重新登录',
       }));
