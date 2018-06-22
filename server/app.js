@@ -36,7 +36,7 @@ let readdir = (path,type) => {
         readdir(path + '/' + v,type);
       }else{
         var file = require(path + '/' +  v);
-        file(app);
+        file.default ? file.default(app) : file(app);
       }
     });
   });
