@@ -19,7 +19,7 @@
         </template>
       </el-table-column>
     </el-table>
-
+    
     <!-- 分页 -->
     <el-pagination
       class="mt-10 mb-10"

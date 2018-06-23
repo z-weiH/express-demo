@@ -56,7 +56,7 @@
             // icon : 'el-icon-location',
           },
           {
-            label : 'Demo',
+            label : 'demo（滚动条）',
             href : '/demo',
             id : 3,
           },
@@ -90,6 +90,7 @@
 
 
 /* el-scrollbar 通用样式 start */
+// el-scrollbar 容器 设置 height ， 其他固定
 .menu-box{
   height: 100%;
   .el-scrollbar{

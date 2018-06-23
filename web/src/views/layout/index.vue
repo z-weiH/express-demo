@@ -6,9 +6,13 @@
     <div class="layout-container">
       <main-Navbar></main-Navbar>
       
-      <transition name="el-fade-in-linear" mode="out-in">
-        <router-view></router-view>
-      </transition>
+      <div class="m-scrollbar-box">
+        <el-scrollbar :native="false">
+          <transition name="el-fade-in-linear" mode="out-in">
+            <router-view></router-view>
+          </transition>
+        </el-scrollbar>
+      </div>
     </div>
   </div>
 </template>
@@ -24,10 +28,10 @@
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 
 .layout-box{
-  position: relative;
+  position: fixed;
   height: 100%;
   width: 100%;
   /* 左侧 menu  */
@@ -36,7 +40,6 @@
     position: absolute;
     top: 0;
     bottom: 0;
-    height: 100%;
     overflow: hidden;
 
   }
@@ -47,6 +50,19 @@
     right: 0;
     bottom: 0;
     padding: 0 20px;
+    padding-right: 0;
+  }
+  // 设置滚动条 样式
+  .m-scrollbar-box{
+    height: calc(100% - 50px);
+    overflow: hidden;
+    .el-scrollbar{
+      height: 100%;
+    }
+    .el-scrollbar__wrap{
+      height: 100%;
+      overflow-x: auto;
+    }
   }
 }
 
