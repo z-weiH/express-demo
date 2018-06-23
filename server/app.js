@@ -21,6 +21,7 @@ app.use(cookieParser());
 
  // 加载所有 静态资源
 app.use(express.static('./../web/dist'));
+app.use(express.static('./assets'));
 
 // 加载所有 router
 import router from './router'

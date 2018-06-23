@@ -6,7 +6,7 @@ let {
   urlencodedParser,
   multipartMiddleware,
 } = import_module('/components/requestType');
-let baseResult = import_module('/components/response')
+let baseResult = import_module('/components/response');
 let sqlMap = import_module('/sql/user.js');
 let validate = import_module('/components/validate.js');
 
@@ -288,4 +288,4 @@ let api = (app) => {
 
 };
 
-module.exports = api;
+export default api
