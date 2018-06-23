@@ -60,6 +60,11 @@
             href : '/demo',
             id : 3,
           },
+          {
+            label : 'upload（文件上传）',
+            href : '/upload',
+            id : 2,
+          },
         ],
       }
     },

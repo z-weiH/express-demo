@@ -51,6 +51,13 @@ let router = new Router({
             name : '/demo',
           },
         },
+        {
+          path : '/upload',
+          component : resolve => require(['@/views/upload'], resolve), 
+          meta : {
+            name : '/upload',
+          },
+        },
       ],
     },
   ]
