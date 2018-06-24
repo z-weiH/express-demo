@@ -1,6 +1,11 @@
 <template>
   <div>
-    <p :key="index" v-for="(item , index) in list">{{item}}-{{index}}</p>
+    <p :key="index" v-for="(item , index) in list">
+      {{item}}-{{index}}
+      {{ 
+        index === (list.length - 1) ? '-最后一个' : ''
+      }}
+    </p>
   </div>
 </template>
 
