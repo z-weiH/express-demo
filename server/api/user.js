@@ -215,8 +215,8 @@ let api = (app) => {
 
   // 查询所有用户
   router.post('/queryUserList.json',urlencodedParser,function(req,res) {
-    let {currentPage,pageSize} = req.body;
-    sqlMap.queryUserList().then(({err,result}) => {
+    let {currentPage = 1,pageSize = 10,userName = '',nickName = ''} = req.body;
+    sqlMap.queryUserList({userName,nickName}).then(({err,result}) => {
       result = result.map((v) => {
         delete v.passWord;
         return v;

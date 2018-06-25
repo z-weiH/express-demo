@@ -2,9 +2,25 @@
   <div>
     <div>
       <span>用户列表</span>
-      <div class="fr">
-        <el-button @click="handleAdd" type="paymery">新增用户</el-button>  
-      </div> 
+      <div>
+        <div class="fl">
+          <el-form :inline="true" ref="ruleForm" :model="ruleForm">
+            <el-form-item label=" " prop="userName">
+              <el-input v-model.trim="ruleForm.userName" placeholder="请输入用户名"></el-input>
+            </el-form-item>
+
+            <el-form-item label=" " prop="nickName">
+              <el-input v-model.trim="ruleForm.nickName" placeholder="请输入昵称"></el-input>
+            </el-form-item>
+
+            <el-button @click="handleSearch" type="primary">查询</el-button>
+          </el-form>
+        </div>
+
+        <div class="fr">
+          <el-button @click="handleAdd">新增用户</el-button>  
+        </div> 
+      </div>
     </div>
     <el-table
       :data="tableData"
@@ -44,6 +60,13 @@
     },
     data() {
       return {
+        ruleForm : {
+          // 用户名
+          userName : '',
+          // 昵称
+          nickName : '',
+        },
+
         tableData : [],
         // 数据总数
         total : 0,
@@ -57,6 +80,12 @@
       this.initTableList();
     },
     methods : {
+      // 点击搜索
+      handleSearch() {
+        this.currentPage = 1;
+        this.initTableList();
+      },
+
       // 表格相关 start
 
       // 初始化 表格数据
@@ -67,6 +96,8 @@
           data : {
             pageSize : this.pageSize,
             currentPage : this.currentPage,
+            userName : this.ruleForm.userName,
+            nickName : this.ruleForm.nickName,
           },
         }).then((res) => {
           this.tableData = res.result.list;

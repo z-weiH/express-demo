@@ -62,9 +62,9 @@ let sqlMap = {
     });
   },
   // 用户列表
-  queryUserList() {
+  queryUserList({userName,nickName}) {
     return new Promise((resolve,reject) => {
-      connection.query(`SELECT * FROM user;`,(err,result) => {
+      connection.query(`SELECT * FROM user WHERE userName like "%${userName}%" and nickName like "%${nickName}%";`,(err,result) => {
         resolve({err,result});
       });
     });
