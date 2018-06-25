@@ -1,15 +1,15 @@
 <template>
   <div>
     <div>
-      <span>用户列表</span>
-      <div>
+      <p>用户列表</p>
+      <div class="mt-20">
         <div class="fl">
           <el-form :inline="true" ref="ruleForm" :model="ruleForm">
-            <el-form-item label=" " prop="userName">
+            <el-form-item label="" prop="userName">
               <el-input v-model.trim="ruleForm.userName" placeholder="请输入用户名"></el-input>
             </el-form-item>
 
-            <el-form-item label=" " prop="nickName">
+            <el-form-item label="" prop="nickName">
               <el-input v-model.trim="ruleForm.nickName" placeholder="请输入昵称"></el-input>
             </el-form-item>
 

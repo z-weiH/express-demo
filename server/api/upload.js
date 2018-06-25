@@ -11,7 +11,7 @@ let random = import_module('/components/random');
 let storage = multer.diskStorage({
   // 配置文件 存放目录
   destination: function (req, file, cb) {
-    cb(null, app_path('/assets/static'))
+    cb(null, app_path('/assets/upload'))
   },
   // 配置文件名
   filename: function (req, file, cb) {
@@ -44,12 +44,12 @@ let api = (app) => {
         // 逻辑校验 校验不通过 删除文件
 
         // 文件删除
-        //deleteFile(`/assets/static/${fileName}`);
+        //deleteFile(`/assets/upload/${fileName}`);
         // 返回 文件ulr
         res.send(baseResult({
-          code : 'sucess',
+          code : 'success',
           result : {
-            path : '/static/' + fileName,
+            path : '/upload/' + fileName,
           },
         }));
       }else{
@@ -71,7 +71,7 @@ let api = (app) => {
     // 文件是否包含 文件后缀
     form.keepExtensions = true;
     // 文件上传 目录
-    form.uploadDir = app_path('/assets/static');
+    form.uploadDir = app_path('/assets/upload');
     // 文件限制 大小 200M
     form.maxFileSize  = 200 * 1024 * 1024;
     // 文件上传至本地事件
@@ -84,16 +84,16 @@ let api = (app) => {
         // 逻辑校验 校验不通过 删除文件
 
         // 文件删除
-        //deleteFile(`/assets/static/${fileName}`);
+        //deleteFile(`/assets/upload/${fileName}`);
 
         // 文件重命名
         let name = `${random()}_${fileName}`;
-        fs.rename(file.path,`assets/static/${name}`, (err) => {
+        fs.rename(file.path,`assets/upload/${name}`, (err) => {
           // 返回 文件ulr
           res.send(baseResult({
-            code : 'sucess',
+            code : 'success',
             result : {
-              path : '/static/' + name,
+              path : '/upload/' + name,
             },
           }));
         });

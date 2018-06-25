@@ -246,7 +246,7 @@ let api = (app) => {
     };
     let rules = {
       id : [
-        {required : true , id : 'id为空'}
+        {required : true , message : 'id为空'}
       ],
     };
     validate(ruleForm,rules,(message) => {
@@ -286,6 +286,49 @@ let api = (app) => {
     res.send(baseResult({
       code : 'success',
     }));
+  });
+
+  // 根据用户 id 获取用户img
+  app.get('/queryUserImgs.json',(req,res) => {
+    console.log('lala');return;
+    let id = req.session.userId;
+    let ruleForm = {
+      id,
+    };
+    let rules = {
+      id : [
+        {required : true , message : 'id为空'}
+      ],
+    };
+    validate(ruleForm,rules,(message) => {
+      if(message !== true) {
+        res.send(baseResult({
+          code : 'error',
+          message : message,
+        }));
+      }else{
+        sqlMap.verifyUserIs({id},(result) => {
+          return result.length > 0 ? true : 'id未找到';
+        // 获取用户图片
+        }).then(() => {
+          return sqlMap.queryUserImgs({id});
+        // 获取 成功
+        }).then(({err,result}) => {
+          res.send(baseResult({
+            code : 'success',
+            result : {
+              img01 : result[0].img01,
+              img02 : result[0].img02,
+            },
+          }));
+        }).catch(({message}) => {
+          res.send(baseResult({
+            code : 'error',
+            message : message,
+          }));
+        });
+      }
+    });
   });
 
   app.use('/user',router);

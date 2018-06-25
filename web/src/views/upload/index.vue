@@ -3,7 +3,7 @@
     <p>文件上传：</p>
     <el-upload
       class="avatar-uploader"
-      action="/upload.json"
+      action="/upload2.json"
       :show-file-list="false"
       :on-success="handleAvatarSuccess"
       :before-upload="beforeAvatarUpload">
@@ -19,6 +19,14 @@
       return {
         imageUrl : '',
       };
+    },
+    mounted() {
+      this.$http({
+        method : 'get',
+        url : '/user/queryUserImgs.json',
+      }).then((res) => {
+        console.log(res,'lalal');
+      });
     },
     methods: {
       handleAvatarSuccess(res, file) {

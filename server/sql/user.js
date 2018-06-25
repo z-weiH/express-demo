@@ -77,6 +77,14 @@ let sqlMap = {
       });
     });
   },
+  // 根据用户 id 获取用户img
+  queryUserImgs({id}) {
+    return new Promise((resolve,reject) => {
+      connection.query(`SELECT * FROM user WHERE id="${id}";`,(err,result) => {
+        resolve({err,result});
+      });
+    });
+  },
 };
 
 
