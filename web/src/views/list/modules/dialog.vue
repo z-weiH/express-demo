@@ -70,7 +70,7 @@
         if(type === 'edit'){
           this.$http({
             method : 'post',
-            url : '/queryUserDetail.json',
+            url : '/user/queryUserDetail.json',
             data : {
               id : row.id,
             },
@@ -91,7 +91,7 @@
           if(valid) {
             this.$http({
               method : 'post',
-              url : this.type === 'add' ? '/userInset.json' : '/userUpdata.json',
+              url : this.type === 'add' ? '/user/userInset.json' : '/user/userUpdata.json',
               data : {
                 userName : this.ruleForm.userName,
                 nickName : this.ruleForm.nickName,

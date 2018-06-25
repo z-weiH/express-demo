@@ -5,8 +5,8 @@ let router = (app) => {
   
   // router 由前端 控制 ， 重定向到 index.html
   app.get('*', function(req, res) {
-    // 重定向逻辑 start
-    let userId = req.session.userId;
+    // 重定向逻辑 start （页面router拦截 ， 已由前端控制 ， 可以删除）
+    /* let userId = req.session.userId;
     // 不需要校验的请求
     let requestUrl = ['/login'];
     let isLogin = req.cookies.isLogin === '1';
@@ -22,7 +22,7 @@ let router = (app) => {
       res.redirect(302,'/login'); 
       return;
     }else{
-    }
+    } */
     // 重定向逻辑 end
     
     fs.readFile('./../web/dist/index.html', 'utf-8', (err, content) => {
@@ -46,7 +46,7 @@ let router = (app) => {
     }
     let userId = req.session.userId;
     // 不需要校验的请求
-    let requestUrl = ['/login.json','/signOut.json'];
+    let requestUrl = ['/user/login.json','/user/signOut.json'];
     let isLogin = req.cookies.isLogin === '1';
     // 当前 请求不需要校验
     if((requestUrl.indexOf(req.url) !== -1)){

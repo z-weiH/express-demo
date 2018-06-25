@@ -65,6 +65,13 @@ let router = new Router({
 
 /* 前置钩子 */
 router.beforeEach((to, from, next) => {
+  // 用户超时 拦截
+  let remove = ['/login'];
+  if( (remove.indexOf(to.path) === -1) && (!localStorage.getItem('loginInfo')) ){
+    router.push('/login');
+    return;
+  }
+
   // 返回顶部
   window.scrollTo(0, 0);
   NProgress.start();
@@ -81,6 +88,7 @@ router.beforeEach((to, from, next) => {
       next();
     }else{
       next();
+      // 权限拦截
       /* try {
         // 当前用户 所有权限树
         let treeList = [];

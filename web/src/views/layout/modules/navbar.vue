@@ -30,7 +30,7 @@
         if(val === 'signOut'){
           this.$http({
             method : 'post',
-            url : '/signOut.json',
+            url : '/user/signOut.json',
           }).then((res) => {
             localStorage.removeItem('loginInfo');
             this.$router.push('/login');

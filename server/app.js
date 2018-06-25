@@ -36,7 +36,7 @@ let readdir = (path,type) => {
       if(v.indexOf('.js') === -1){
         readdir(path + '/' + v,type);
       }else{
-        var file = require(path + '/' +  v);
+        let file = require(path + '/' +  v);
         file.default ? file.default(app) : file(app);
       }
     });

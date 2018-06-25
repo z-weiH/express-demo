@@ -59,7 +59,7 @@
 						formData.append('name','张三');
             this.$http({
 							method : 'post',
-							url : '/login.json',
+							url : '/user/login.json',
 							data : {
 								userName : this.ruleForm.loginName,
 								passWord : this.ruleForm.passWord,

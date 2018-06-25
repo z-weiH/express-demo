@@ -1,3 +1,5 @@
+import express from 'express';
+const router = express.Router();
 
 import uuid from 'node-uuid'
 
@@ -12,7 +14,7 @@ let validate = import_module('/components/validate.js');
 
 let api = (app) => {
   // 用户登录
-  app.post('/login.json',urlencodedParser,function(req,res) {
+  router.post('/login.json',urlencodedParser,function(req,res) {
     let {userName , passWord} = req.body;
     let ruleForm = {
       userName,
@@ -61,7 +63,7 @@ let api = (app) => {
   });
 
   // 用户新增
-  app.post('/userInset.json',urlencodedParser,function(req,res) {
+  router.post('/userInset.json',urlencodedParser,function(req,res) {
     let {userName,passWord,nickName} = req.body;
     let ruleForm = {
       userName,
@@ -115,7 +117,7 @@ let api = (app) => {
   });
 
   // 用户修改
-  app.post('/userUpdata.json',urlencodedParser,function(req,res) {
+  router.post('/userUpdata.json',urlencodedParser,function(req,res) {
     let {userName,passWord,nickName,id} = req.body;
     let ruleForm = {
       id,
@@ -172,7 +174,7 @@ let api = (app) => {
   });
   
   // 用户删除
-  app.post('/userDelete.json',urlencodedParser,function(req,res) {
+  router.post('/userDelete.json',urlencodedParser,function(req,res) {
     let {id} = req.body;
     let ruleForm = {
       id,
@@ -212,7 +214,7 @@ let api = (app) => {
   });
 
   // 查询所有用户
-  app.post('/queryUserList.json',urlencodedParser,function(req,res) {
+  router.post('/queryUserList.json',urlencodedParser,function(req,res) {
     let {currentPage,pageSize} = req.body;
     sqlMap.queryUserList().then(({err,result}) => {
       result = result.map((v) => {
@@ -237,7 +239,7 @@ let api = (app) => {
   });
 
   // 用户详情
-  app.post('/queryUserDetail.json',urlencodedParser,function(req,res) {
+  router.post('/queryUserDetail.json',urlencodedParser,function(req,res) {
     let {id} = req.body;
     let ruleForm = {
       id,
@@ -276,7 +278,7 @@ let api = (app) => {
   });
 
   // 用户退出 
-  app.post('/signOut.json',function(req,res) {
+  router.post('/signOut.json',function(req,res) {
     // 清除 cookie
     res.clearCookie('isLogin');
     // 清除 session userIn
@@ -286,6 +288,7 @@ let api = (app) => {
     }));
   });
 
+  app.use('/user',router);
 };
 
 export default api

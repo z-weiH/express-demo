@@ -63,7 +63,7 @@
       initTableList() {
         this.$http({
           method : 'post',
-          url : '/queryUserList.json',
+          url : '/user/queryUserList.json',
           data : {
             pageSize : this.pageSize,
             currentPage : this.currentPage,
@@ -105,7 +105,7 @@
         }).then(() => {
           this.$http({
             method : 'post',
-            url : '/userDelete.json',
+            url : '/user/userDelete.json',
             data : {
               id : row.id,
             },
