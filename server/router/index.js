@@ -4,9 +4,9 @@ import evn_var from './../env.js'
 let router = (app) => {
   
   // router 由前端 控制 ， 重定向到 index.html
-  app.get('*', function(req, res) {
-    // 重定向逻辑 start （页面router拦截 ， 已由前端控制 ， 可以删除）
-    /* let userId = req.session.userId;
+  app.get('*', function(req, res,next) {
+    // 重定向逻辑 start （页面刷新router拦截）
+    let userId = req.session.userId;
     // 不需要校验的请求
     let requestUrl = ['/login'];
     let isLogin = req.cookies.isLogin === '1';
@@ -22,7 +22,7 @@ let router = (app) => {
       res.redirect(302,'/login'); 
       return;
     }else{
-    } */
+    }
     // 重定向逻辑 end
     // 判断当前请求 如果是页面请求 重定向到 index页面
     if(req.originalUrl.indexOf('.json') === -1){
@@ -37,15 +37,19 @@ let router = (app) => {
     
         res.end(content)
       })
+    }else{
+      next();
     }
   });
 
   // 请求拦截器
-  app.all('/*', function(req, res, next){
-    if(evn_var.ENV === 'dev'){
+  app.all('*', function(req, res, next){
+    // 接口不进行缓存
+    res.header('Cache-Control','no-store');
+    /* if(evn_var.ENV === 'dev'){
       next();
       return;
-    }
+    } */
     let userId = req.session.userId;
     // 不需要校验的请求
     let requestUrl = ['/user/login.json','/user/signOut.json'];

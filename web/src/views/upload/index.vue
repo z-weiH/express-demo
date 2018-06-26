@@ -7,7 +7,7 @@
       :show-file-list="false"
       :on-success="handleAvatarSuccess"
       :before-upload="beforeAvatarUpload">
-      <img v-if="imageUrl" :src="imageUrl" class="avatar">
+      <img v-if="img01" :src="img01" class="avatar">
       <i v-else class="el-icon-plus avatar-uploader-icon"></i>
     </el-upload>
   </div>
@@ -17,7 +17,7 @@
   export default {
     data() {
       return {
-        imageUrl : '',
+        img01 : '',
       };
     },
     mounted() {
@@ -26,11 +26,12 @@
         url : '/user/queryUserImgs.json',
       }).then((res) => {
         console.log(res,'lalal');
+        this.img01 = res.result.img01;
       });
     },
     methods: {
       handleAvatarSuccess(res, file) {
-        this.imageUrl = res.result.path;
+        this.img01 = res.result.path;
       },
       beforeAvatarUpload(file) {
         const isJPG = file.type === 'image/jpeg';

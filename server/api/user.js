@@ -289,8 +289,7 @@ let api = (app) => {
   });
 
   // 根据用户 id 获取用户img
-  app.get('/queryUserImgs.json',(req,res) => {
-    console.log('lala');return;
+  router.get('/queryUserImgs.json',(req,res) => {
     let id = req.session.userId;
     let ruleForm = {
       id,
