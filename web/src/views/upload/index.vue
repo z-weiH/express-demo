@@ -3,21 +3,35 @@
     <p>文件上传：</p>
     <el-upload
       class="avatar-uploader"
-      action="/upload2.json"
+      action="/upload.json"
       :show-file-list="false"
       :on-success="handleAvatarSuccess"
-      :before-upload="beforeAvatarUpload">
+    >
       <img v-if="img01" :src="img01" class="avatar">
       <i v-else class="el-icon-plus avatar-uploader-icon"></i>
     </el-upload>
+    <div class="mt-20">
+      <upload ref="upload1" :img.sync="img01"></upload>
+      <el-button @click="handleUpload1">提交</el-button>
+    </div>
+    
+    <div class="mt-20">
+      <upload ref="upload2" :img.sync="img02"></upload>
+      <el-button @click="handleUpload2">提交</el-button>
+    </div>
   </div>
 </template>
 
 <script>
+  import upload from '@/components/upload.vue'
   export default {
+    components : {
+      upload,
+    },
     data() {
       return {
         img01 : '',
+        img02 : '',
       };
     },
     mounted() {
@@ -25,26 +39,46 @@
         method : 'get',
         url : '/user/queryUserImgs.json',
       }).then((res) => {
-        console.log(res,'lalal');
-        this.img01 = res.result.img01;
+        this.img01 = res.result.img01 || '';
+        this.img02 = res.result.img02 || '';
       });
     },
     methods: {
       handleAvatarSuccess(res, file) {
         this.img01 = res.result.path;
       },
-      beforeAvatarUpload(file) {
-        const isJPG = file.type === 'image/jpeg';
-        const isLt2M = file.size / 1024 / 1024 < 2;
-        /* if (!isJPG) {
-          this.$message.error('上传头像图片只能是 JPG 格式!');
+      handleUpload1() {
+        let file = this.$refs.upload1.getFile();
+        if(!file && !this.img01){
+          return;
         }
-        if (!isLt2M) {
-          this.$message.error('上传头像图片大小不能超过 2MB!');
+        let formData = new FormData();
+        formData.append('file',file);
+        this.$http({
+          method : 'post',
+          url : '/upload.json',
+          data : formData,
+          mheaders : true,
+        }).then((res) => {
+
+        });
+      },
+      handleUpload2() {
+        let file = this.$refs.upload2.getFile();
+        if(!file && !this.img02){
+          return;
         }
-        return isJPG && isLt2M; */
-        return true;
-      }
+        let formData = new FormData();
+        formData.append('file',file);
+        this.$http({
+          method : 'post',
+          url : '/upload2.json',
+          data : formData,
+          mheaders : true,
+        }).then((res) => {
+
+        });
+      },
     }
   }
 </script>
