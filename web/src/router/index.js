@@ -19,7 +19,15 @@ let router = new Router({
   routes: [
     {
       path : '/',
-      redirect : '/login',
+      component : resolve => require(['@/views/login'], resolve), 
+    },
+    {
+      path : '/index.html',
+      component : resolve => require(['@/views/login'], resolve), 
+    },
+    {
+      path : '/index.htm',
+      component : resolve => require(['@/views/login'], resolve), 
     },
     {
       path : '/login',
