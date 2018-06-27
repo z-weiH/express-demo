@@ -3,6 +3,7 @@ let app = express();
 // 加载所有 公共方法
 import './global'
 
+/* 
 // 使用 session 中间件 存储用户 session
 import session from 'express-session'
 import MySQLStore from 'express-mysql-session'
@@ -47,8 +48,10 @@ let readdir = (path,type) => {
   });
 };
 readdir('./api','.js');
+*/
 
-
+import init from './init'
+init(app);
 
 
 app.listen(80, function () {
