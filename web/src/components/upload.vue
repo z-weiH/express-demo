@@ -6,7 +6,7 @@
   >
     <i v-if="!img" class="upload-add el-icon-plus avatar-uploader-icon"></i>
     <input v-if="!img" @change="handleChange" type="file" title=" " />
-    <a v-if="img">
+    <a v-if="img" @click="handleOpen">
       <img :style="{width : imgWidth + 'px' , height : imgHeight ? imgHeight + 'px' : ''}" :src="img" />
     </a>
     <i v-if="img" @click="handleClose" class="upload-close el-icon-circle-close-outline"></i> 
@@ -93,6 +93,10 @@
           return;
         }
         this.clearAll();
+      },
+      // 新窗口打开图片
+      handleOpen() {
+        window.open(this.img);
       },
     },
   }
