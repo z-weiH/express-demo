@@ -6,6 +6,11 @@ import formidable from 'formidable'
 let baseResult = import_module('/components/response');
 let deleteFile = import_module('/components/deleteFile');
 let random = import_module('/components/random');
+let {
+  jsonParser,
+  urlencodedParser,
+  multipartMiddleware,
+} = import_module('/components/requestType');
 
 // multer 配置项 start
 let storage = multer.diskStorage({
@@ -44,7 +49,7 @@ let api = (app) => {
         // 逻辑校验 校验不通过 删除文件
 
         // 文件删除
-        //deleteFile(`/assets/upload/${fileName}`);
+        //deleteFile(`/assets/upload/${fileName}`,() => {});
         // 返回 文件ulr
         res.send(baseResult({
           code : 'success',
@@ -84,7 +89,7 @@ let api = (app) => {
         // 逻辑校验 校验不通过 删除文件
 
         // 文件删除
-        //deleteFile(`/assets/upload/${fileName}`);
+        //deleteFile(`/assets/upload/${fileName}`,() => {});
 
         // 文件重命名
         let name = `${random()}_${fileName}`;
@@ -99,6 +104,25 @@ let api = (app) => {
         });
       }else{
         console.log(err);
+      }
+    });
+  });
+
+  // 文件删除
+  app.post('/deleteFile.json',urlencodedParser,(req,res) => {
+    let {path} = req.body;
+    deleteFile(`/assets${path}`,(err) => {
+      if(!err) {
+        res.send(baseResult({
+          code : 'success',
+          message : '删除成功',
+        }));
+      }else{
+        console.log(err,'文件删除失败');
+        res.send(baseResult({
+          code : 'success',
+          message : '删除失败' + err,
+        }));
       }
     });
   });

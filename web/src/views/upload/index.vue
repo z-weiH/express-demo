@@ -12,12 +12,10 @@
     </el-upload>
     <div class="mt-20">
       <upload ref="upload1" :img.sync="img01"></upload>
-      <el-button @click="handleUpload1">提交</el-button>
     </div>
     
     <div class="mt-20">
       <upload ref="upload2" :img.sync="img02"></upload>
-      <el-button @click="handleUpload2">提交</el-button>
     </div>
   </div>
 </template>
@@ -46,38 +44,6 @@
     methods: {
       handleAvatarSuccess(res, file) {
         this.img01 = res.result.path;
-      },
-      handleUpload1() {
-        let file = this.$refs.upload1.getFile();
-        if(!file && !this.img01){
-          return;
-        }
-        let formData = new FormData();
-        formData.append('file',file);
-        this.$http({
-          method : 'post',
-          url : '/upload.json',
-          data : formData,
-          mheaders : true,
-        }).then((res) => {
-
-        });
-      },
-      handleUpload2() {
-        let file = this.$refs.upload2.getFile();
-        if(!file && !this.img02){
-          return;
-        }
-        let formData = new FormData();
-        formData.append('file',file);
-        this.$http({
-          method : 'post',
-          url : '/upload2.json',
-          data : formData,
-          mheaders : true,
-        }).then((res) => {
-
-        });
       },
     }
   }

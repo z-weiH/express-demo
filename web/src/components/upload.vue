@@ -6,7 +6,9 @@
   >
     <i v-if="!img" class="upload-add el-icon-plus avatar-uploader-icon"></i>
     <input v-if="!img" @change="handleChange" type="file" title=" " />
-    <img v-if="img" :style="{width : imgWidth + 'px' , height : imgHeight ? imgHeight + 'px' : ''}" :src="img" />
+    <a v-if="img">
+      <img :style="{width : imgWidth + 'px' , height : imgHeight ? imgHeight + 'px' : ''}" :src="img" />
+    </a>
     <i v-if="img" @click="handleClose" class="upload-close el-icon-circle-close-outline"></i> 
   </div>  
 </template>
@@ -14,7 +16,6 @@
 <script>
   /*  静态文件上传 显示的图片为 base64 
     event
-      getFile 获取文件流
       clearAll 清除图片以及文件流
 
     最简单示例：
@@ -51,22 +52,26 @@
       'upload-close' : {
         type : Function,
       },
-    },
-    data() {
-      return {
-        file : '',
-      }
+      // 文件上传成功回调
+      'successCBK' : {
+        type : Function,
+      },
     },
     methods : {
-      // 获取文件流
-      getFile() {
-        return this.file;
-      },
       // 数据清除
       clearAll() {
-        this.$emit('update:img','');
-        this.file = '';
+        // 删除文件
+        this.$http({
+          method : 'post',
+          url : '/deleteFile.json',
+          data : {
+            path : this.img,
+          },
+        }).then(() => {
+          this.$emit('update:img','');
+        });
       },
+      // 文件上传 change
       handleChange(event) {
         let file = event.target.files[0];
         event.target.value = '';
@@ -74,15 +79,18 @@
         if(this.beforeUpload && (this.beforeUpload(file) !== true) ){
           return;
         }
-        this.file = file;
-        
-        let reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = (data) => {
-          let base64 = data.target.result;
-          this.$emit('update:img',base64);
-        }
+        let formData = new FormData();
+        formData.append('file',file);
+        this.$http({
+          method : 'post',
+          url : '/upload.json',
+          data : formData,
+          mheaders : true,
+        }).then((res) => {
+          this.$emit('update:img',res.result.path);
+        });
       },
+      // x
       handleClose() {
         if( this.uploadClose && (this.uploadClose() === false) ) {
           return;
@@ -136,6 +144,9 @@
     width: 100%;
     float: left;
     border-radius: 6px;
+  }
+  a{
+    cursor: pointer;
   }
 }
 
