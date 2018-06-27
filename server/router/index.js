@@ -14,12 +14,20 @@ let router = (app) => {
     if((requestUrl.indexOf(req.url) !== -1)){
     // 用户未登录
     }else if(!isLogin){
-      res.redirect(302,'/login'); 
+      //res.redirect(302,'/index.html'); 
+      res.send(baseResult({
+        code : 'login',
+        message : '请登录',
+      }));
       return;
     // 登录超时      
     }else if(!userId) {
       res.clearCookie('isLogin');
-      res.redirect(302,'/login'); 
+      //res.redirect(302,'/index.html'); 
+      res.send(baseResult({
+        code : 'overTime',
+        message : '请重新登录',
+      }));
       return;
     }else{
     }

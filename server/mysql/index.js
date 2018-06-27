@@ -1,11 +1,7 @@
 import mysql from 'mysql'
+import root from './root'
 
-let connection = mysql.createConnection({
-  host     : '118.24.106.102',
-  user     : 'root', // 用户名
-  password : '123456', // 密码
-  database : 'demo', // 数据库名
-});
+let connection = mysql.createConnection(root());
 
 connection.connect();
 
