@@ -14,7 +14,7 @@ let sqlMap = {
   // 用户登录
   login({userName,passWord}) {
     return new Promise((resolve,reject) => {
-      connection.query(`SELECT * FROM user WHERE userName="${userName}" AND passWord="${passWord}";`,(err,result) => {
+      connection.query(`SELECT * FROM user WHERE userName=? AND passWord=?`,[userName,passWord],function(err,result){
         resolve({err,result});
       });
     });
