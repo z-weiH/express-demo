@@ -1,7 +1,7 @@
 <template>
   <div class="upload">
     <p>文件上传：</p>
-    <el-upload
+    <!-- <el-upload
       class="avatar-uploader"
       action="/upload.json"
       :show-file-list="false"
@@ -9,13 +9,15 @@
     >
       <img v-if="img01" :src="img01" class="avatar">
       <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-    </el-upload>
+    </el-upload> -->
     <div class="mt-20">
-      <upload ref="upload1" :img.sync="img01"></upload>
+      <upload @successCBK="successCBK1" ref="upload1" :img.sync="img01"></upload>
+      <p>img01</p>
     </div>
     
     <div class="mt-20">
-      <upload ref="upload2" :img.sync="img02"></upload>
+      <upload @successCBK="successCBK2" ref="upload2" :img.sync="img02"></upload>
+      <p>img02</p>
     </div>
   </div>
 </template>
@@ -44,6 +46,13 @@
     methods: {
       handleAvatarSuccess(res, file) {
         this.img01 = res.result.path;
+      },
+      // 文件上传成功
+      successCBK1() {
+
+      },
+      successCBK2() {
+
       },
     }
   }

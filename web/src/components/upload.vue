@@ -52,10 +52,6 @@
       'upload-close' : {
         type : Function,
       },
-      // 文件上传成功回调
-      'successCBK' : {
-        type : Function,
-      },
     },
     methods : {
       // 数据清除
@@ -88,6 +84,7 @@
           mheaders : true,
         }).then((res) => {
           this.$emit('update:img',res.result.path);
+          this.emit('successCBK',res.result.path);
         });
       },
       // x
