@@ -77,7 +77,9 @@
       }
     },
     mounted() {
-      this.initTableList();
+      this.initTableList(() => {
+        window.$close.close();
+      });
     },
     methods : {
       // 点击搜索
@@ -89,7 +91,7 @@
       // 表格相关 start
 
       // 初始化 表格数据
-      initTableList() {
+      initTableList(CBK) {
         this.$http({
           method : 'post',
           url : '/user/queryUserList.json',
@@ -102,6 +104,7 @@
         }).then((res) => {
           this.tableData = res.result.list;
           this.total = res.result.total;
+          CBK && CBK();
         });
       },
       // 页数 change

@@ -13,17 +13,23 @@ Vue.prototype.$http = axios;
 
 // element-ui
 import ElementUI from 'element-ui'
+// 装载 element ui
+Vue.use(ElementUI);
+
 // 样式
 import 'element-ui/lib/theme-chalk/index.css';
 import '@/assets/css/index.scss'
 import '@/assets/font/iconfont/iconfont.css'
-// 装载 element ui
-Vue.use(ElementUI);
+
+// 引入 store
+import store from './store'
+
 
 /* eslint-disable no-new */
-new Vue({
+window.APP = new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

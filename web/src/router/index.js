@@ -6,6 +6,13 @@ import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
 Vue.use(Router);
+
+// loading 排除的页面
+import loadingExclude from './loadingExclude'
+// 超时 排除页面
+import overtimeExclude from './overtimeExclude'
+
+
 /* 
 
 通过npm run dev运行的程序，打印process.env.NODE_ENV显示为：development；
@@ -74,8 +81,7 @@ let router = new Router({
 /* 前置钩子 */
 router.beforeEach((to, from, next) => {
   // 用户超时 拦截
-  let remove = ['/login'];
-  if( (remove.indexOf(to.path) === -1) && (!localStorage.getItem('loginInfo')) ){
+  if( (overtimeExclude.indexOf(to.path) === -1) && (!localStorage.getItem('loginInfo')) ){
     router.push('/login');
     return;
   }
@@ -127,6 +133,18 @@ router.beforeEach((to, from, next) => {
 /* 后置钩子 */
 router.afterEach((to, from) => {
   NProgress.done();
+  
+  // loading
+  if(loadingExclude.indexOf(to.path) === -1) {
+    if(window.APP) {
+      window.$close = window.APP.$loading({
+        lock: true,
+        text: '加载中~',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0.7)'
+      });
+    }
+  }
 });
 
 export default router

@@ -44,6 +44,7 @@
       }).then((res) => {
         this.img01 = res.result.img01 || '';
         this.img02 = res.result.img02 || '';
+        window.$close.close();
       });
     },
     methods: {
