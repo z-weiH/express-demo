@@ -12,11 +12,13 @@
     </el-upload> -->
     <div class="mt-20">
       <upload @successCBK="successCBK1" ref="upload1" :img.sync="img01"></upload>
+      <el-button @click="handleDownload(img01)">img01下载</el-button>
       <p>img01</p>
     </div>
     
     <div class="mt-20">
       <upload @successCBK="successCBK2" ref="upload2" :img.sync="img02"></upload>
+      <el-button @click="handleDownload(img02)">img02下载</el-button>
       <p>img02</p>
     </div>
   </div>
@@ -24,6 +26,7 @@
 
 <script>
   import upload from '@/components/upload.vue'
+  import download from '@/assets/js/download'
   export default {
     components : {
       upload,
@@ -46,6 +49,13 @@
     methods: {
       handleAvatarSuccess(res, file) {
         this.img01 = res.result.path;
+      },
+      // 文件下载
+      handleDownload(path) {
+        download({
+          url : '/download.json',
+          data : {path},
+        });
       },
       // 文件上传成功
       successCBK1() {
