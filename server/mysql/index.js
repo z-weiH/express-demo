@@ -11,7 +11,6 @@ connection.query = (sql,values,callback) => {
   // 当前为 占位符方式
   if(callback) {
     query(sql,values,(err,result,fields) => {
-      console.log(result);
       let str = JSON.stringify(result);
       let data = JSON.parse(str);
       callback(err,data,fields);

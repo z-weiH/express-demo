@@ -330,6 +330,35 @@ let api = (app) => {
     });
   });
 
+  // 根据筛选条件 导出Excel
+  let nodeExcel = require('excel-export');//关联excel-export模块
+  router.get('/excelExport.json',jsonParser,(req,res) => {
+    let {userName = '',nickName = ''} = req.query;
+    sqlMap.queryUserList({userName,nickName}).then(({err,result}) => {
+      let conf = {};
+      conf.cols = [
+        {caption:'用户名', type:'string',width:30},
+        {caption:'昵称', type:'string',width:40},
+        {caption:'img01', type:'string',width:50},
+        {caption:'img02', type:'string',width:60}               
+      ];
+      conf.rows = result.map((v) => {
+        return [
+          v.userName,
+          v.nickName,
+          v.img01,
+          v.img02,
+        ]
+      });
+      // excel 样式
+      conf.stylesXmlFile = app_path('/assets/styles.xml');
+      let excel = nodeExcel.execute(conf);
+      res.setHeader('Content-Type', 'application/vnd.openxmlformats');
+      res.setHeader("Content-Disposition", "attachment; filename=" + "user.xlsx");
+      res.end(excel, 'binary');
+    });
+  });
+
   app.use('/user',router);
 };
 
