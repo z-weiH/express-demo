@@ -11,13 +11,13 @@
       <i v-else class="el-icon-plus avatar-uploader-icon"></i>
     </el-upload> -->
     <div class="mt-20">
-      <upload @successCBK="successCBK1" ref="upload1" :img.sync="img01"></upload>
+      <upload :upload-close="uploadClose1" @successCBK="successCBK1" ref="upload1" :img.sync="img01"></upload>
       <el-button @click="handleDownload(img01)">img01下载</el-button>
       <p>img01</p>
     </div>
     
     <div class="mt-20">
-      <upload @successCBK="successCBK2" ref="upload2" :img.sync="img02"></upload>
+      <upload :upload-close="uploadClose2" @successCBK="successCBK2" ref="upload2" :img.sync="img02"></upload>
       <el-button @click="handleDownload(img02)">img02下载</el-button>
       <p>img02</p>
     </div>
@@ -60,12 +60,36 @@
           data : {path},
         });
       },
-      // 文件上传成功
-      successCBK1() {
-
+      // 文件删除
+      uploadClose1() {
+        this.successCBK1('');
       },
-      successCBK2() {
+      uploadClose2() {
+        this.successCBK2('');
+      },
 
+      // 文件上传成功 保存用户图片
+      successCBK1(img) {
+        this.$http({
+          method : 'post',
+          url : '/user/updataUserImgs.json',
+          data : {
+            img01 : img !== undefined ? img : this.img01,
+          }
+        }).then((res) => {
+          
+        });
+      },
+      successCBK2(img) {
+        this.$http({
+          method : 'post',
+          url : '/user/updataUserImgs.json',
+          data : {
+            img02 : img !== undefined ? img : this.img01,
+          }
+        }).then((res) => {
+          
+        });
       },
     }
   }

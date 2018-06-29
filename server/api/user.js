@@ -329,6 +329,38 @@ let api = (app) => {
       }
     });
   });
+  // 修改用户 img
+  router.post('/updataUserImgs.json',urlencodedParser,(req,res) => {
+    let id = req.session.userId;
+    let {img01,img02} = req.body;
+    let ruleForm = {
+      id,
+    };
+    let rules = {
+      id : [
+        {required : true , message : 'id为空'}
+      ],
+    };
+    validate(ruleForm,rules,(message) => {
+      if(message !== true) {
+        res.send(baseResult({
+          code : 'error',
+          message : message,
+        }));
+      }else{
+        sqlMap.updataUserImgs({id,img01,img02}).then(({err,result}) => {
+          if(err) {
+            console.log(err);
+          }else{
+            res.send(baseResult({
+              code : 'success',
+              message : '修改成功',
+            }));
+          }
+        });
+      }
+    });
+  });
 
   // 根据筛选条件 导出Excel
   let nodeExcel = require('excel-export');//关联excel-export模块

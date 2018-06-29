@@ -120,7 +120,7 @@ let api = (app) => {
       }else{
         console.log(err,'文件删除失败');
         res.send(baseResult({
-          code : 'success',
+          code : 'error',
           message : '删除失败' + err,
         }));
       }

@@ -85,6 +85,17 @@ let sqlMap = {
       });
     });
   },
+  // 修改用户图片
+  updataUserImgs({id,img01,img02}) {
+    return new Promise((resolve,reject) => {
+      let i01 = `UPDATE user SET img01=? WHERE id="${id}";`
+      let i02 = `UPDATE user SET img02=? WHERE id="${id}";`
+      let type = img01 !== undefined ? 'img01' : 'img02';
+      connection.query(type === 'img01' ? i01 : i02,[type === 'img01' ? img01 : img02],(err,result) => {
+        resolve({err,result});
+      });
+    });
+  },
 };
 
 

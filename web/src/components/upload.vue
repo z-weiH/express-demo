@@ -84,7 +84,7 @@
           mheaders : true,
         }).then((res) => {
           this.$emit('update:img',res.result.path);
-          this.emit('successCBK',res.result.path);
+          this.$emit('successCBK',res.result.path);
         });
       },
       // x
