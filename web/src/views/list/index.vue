@@ -14,6 +14,7 @@
             </el-form-item>
 
             <el-button @click="handleSearch" type="primary">查询</el-button>
+            <el-button @click="handleExcel">导出Excel</el-button>
           </el-form>
         </div>
 
@@ -54,6 +55,7 @@
 
 <script>
   import mdialog from './modules/dialog.vue'
+  import download from '@/assets/js/download'
   export default {
     components : {
       mdialog,
@@ -78,7 +80,7 @@
     },
     mounted() {
       this.initTableList(() => {
-        window.$close.close();
+        window.$dialogClose.close()
       });
     },
     methods : {
@@ -86,6 +88,16 @@
       handleSearch() {
         this.currentPage = 1;
         this.initTableList();
+      },
+      // 导出 excel
+      handleExcel() {
+        download({
+          url : '/user/excelExport.json',
+          data : {
+            userName : this.ruleForm.userName,
+            nickName : this.ruleForm.nickName,
+          },
+        });
       },
 
       // 表格相关 start
@@ -105,6 +117,8 @@
           this.tableData = res.result.list;
           this.total = res.result.total;
           CBK && CBK();
+        }).catch(() => {
+          window.$dialogClose.close()
         });
       },
       // 页数 change
