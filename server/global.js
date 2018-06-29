@@ -28,3 +28,6 @@ global.app_path = (url) => {
   return position;
 }
 
+// 用户session 时间
+global.user_session = 1000 * 60 * 30;
+

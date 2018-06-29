@@ -11,7 +11,7 @@ export default (app) => {
     resave : false,
     saveUninitialized: false, // 是否保存未初始化的会话
     cookie : {
-      maxAge : 1000 * 60 * 30, // 设置 session 的有效时间，单位毫秒
+      maxAge : user_session, // 设置 session 的有效时间，单位毫秒
     },
     store : sessionStore, // session 存储到mysql 如果不使用会存储到内存中，node重启 ， 会重置session
   }));
