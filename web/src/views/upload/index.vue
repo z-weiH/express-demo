@@ -12,13 +12,13 @@
     </el-upload> -->
     <div class="mt-20">
       <upload :upload-close="uploadClose1" @successCBK="successCBK1" ref="upload1" :img.sync="img01"></upload>
-      <el-button @click="handleDownload(img01)">img01下载</el-button>
+      <el-button v-if="img01" @click="handleDownload(img01)">img01下载</el-button>
       <p>img01</p>
     </div>
     
     <div class="mt-20">
       <upload :upload-close="uploadClose2" @successCBK="successCBK2" ref="upload2" :img.sync="img02"></upload>
-      <el-button @click="handleDownload(img02)">img02下载</el-button>
+      <el-button v-if="img02" @click="handleDownload(img02)">img02下载</el-button>
       <p>img02</p>
     </div>
   </div>
