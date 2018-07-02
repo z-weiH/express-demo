@@ -1,7 +1,8 @@
 import express from 'express';
 const router = express.Router();
 
-import uuid from 'node-uuid'
+import uuid from 'node-uuid' // 产生随机编码
+import nodeExcel from 'excel-export' //关联excel-export模块
 
 let {
   jsonParser,
@@ -329,6 +330,7 @@ let api = (app) => {
       }
     });
   });
+  
   // 修改用户 img
   router.post('/updataUserImgs.json',urlencodedParser,(req,res) => {
     let id = req.session.userId;
@@ -363,7 +365,6 @@ let api = (app) => {
   });
 
   // 根据筛选条件 导出Excel
-  let nodeExcel = require('excel-export');//关联excel-export模块
   router.get('/excelExport.json',jsonParser,(req,res) => {
     let {userName = '',nickName = ''} = req.query;
     sqlMap.queryUserList({userName,nickName}).then(({err,result}) => {
