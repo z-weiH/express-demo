@@ -12,6 +12,9 @@
         margin: 0px;
         padding: 0px;
       }
+      .nx-app-loading-hide{
+        display: none;
+      }
       .nx-app-loading-group {
         height: 100%;
         width: 100%;
@@ -122,9 +125,15 @@
         }
       }
     </style>
+    <!-- 首屏加载逻辑 -->
+    <script>
+      setTimeout(function() {
+        document.querySelector('#app').className = '';
+      },0);
+    </script>
   </head>
   <body>
-    <div id="app">
+    <div id="app" class="nx-app-loading-hide">
       <div class="nx-app-loading-group">
         <div class="nx-app-loading-grid">
           <div class="nx-app-loading nx-app-loading1"></div>
