@@ -13,24 +13,24 @@ let querypoll = function(sql,params,callback){
       // 参数判断
       if(callback) {
         let query = conn.query(sql,params,function(err,result,fields){
-          //释放连接
-          conn.release();
           // 数据处理
           let str = JSON.stringify(result);
           let data = JSON.parse(str);
           //事件驱动回调
           callback(err,data,fields);
         });
+        //释放连接，需要注意的是连接释放需要在此处释放，而不是在查询回调里面释放
+        conn.release();
       }else{
         let query = conn.query(sql,function(err,result,fields){
-          //释放连接
-          conn.release();
           // 数据处理
           let str = JSON.stringify(result);
           let data = JSON.parse(str);
           //事件驱动回调
           params(err,data,fields);
         });
+        //释放连接，需要注意的是连接释放需要在此处释放，而不是在查询回调里面释放
+        conn.release();
       }
     }
   });
