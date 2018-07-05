@@ -199,11 +199,18 @@ let api = (app) => {
         }).then(() => {
           return sqlMap.userDelete({id});
         // 删除用户 成功
-        }).then((err,result) => {
-          res.send(baseResult({
-            code : 'success',
-            message : '删除成功',
-          }));
+        }).then(({err,result}) => {
+          if(!err) {
+            res.send(baseResult({
+              code : 'success',
+              message : '删除成功',
+            }));
+          }else{
+            res.send(baseResult({
+              code : 'error',
+              message : err,
+            }));
+          }
         }).catch(({message}) => {
           res.send(baseResult({
             code : 'error',

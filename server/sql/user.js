@@ -56,6 +56,10 @@ let sqlMap = {
   // 用户删除
   userDelete({id}) {
     return new Promise((resolve,reject) => {
+      if(id === 'admin') {
+        resolve({err : '无法删除'});
+        return;
+      }
       connection.querypoll(`DELETE from user WHERE id='${id}';`,(err,result) => {
         resolve({err,result});
       });
