@@ -229,13 +229,22 @@ let api = (app) => {
         delete v.passWord;
         return v;
       });
+      // 响应 list
       let list = [];
-      // 手动 分页
+      // 分页
       for(let i = (currentPage - 1) * pageSize ; i < (currentPage - 1) * pageSize + pageSize ; i ++ ){
         if(result[i]){
           list.push(result[i]);
         }
       }
+      // 排序（倒叙）
+      list.sort((v,v1) => {
+        return (
+          v.createTime > v1.createTime ? -1 :
+          v.createTime < v1.createTime ? 1 :
+          v.createTime === v1.createTime ? 0 : null
+        )
+      });
       let obj = {
         result : {
           list : list,
