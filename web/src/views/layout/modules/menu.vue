@@ -65,6 +65,11 @@
             href : '/upload',
             id : 2,
           },
+          {
+            label : 'wow（滚动动画）',
+            href : '/wow',
+            id : 4,
+          },
         ],
       }
     },

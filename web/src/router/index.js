@@ -73,6 +73,13 @@ let router = new Router({
             name : '/upload',
           },
         },
+        {
+          path : '/wow',
+          component : resolve => require(['@/views/wow'], resolve), 
+          meta : {
+            name : '/wow',
+          },
+        },
       ],
     },
   ]
