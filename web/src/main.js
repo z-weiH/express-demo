@@ -24,6 +24,16 @@ import '@/assets/font/iconfont/iconfont.css'
 // 引入 store
 import store from './store'
 
+// loading
+Vue.prototype.$mloading = ({lock = true , text = '加载中~'} = {}) => {
+  return window.APP.$loading({
+    lock: lock,
+    text: text,
+    spinner: 'el-icon-loading',
+    background: 'rgba(0, 0, 0, 0.7)'
+  });
+}
+
 
 /* eslint-disable no-new */
 window.APP = new Vue({

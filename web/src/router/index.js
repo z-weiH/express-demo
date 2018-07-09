@@ -144,12 +144,7 @@ router.afterEach((to, from) => {
   // loading
   if(loadingExclude.indexOf(to.path) === -1) {
     if(window.APP) {
-      window.$dialogClose = window.APP.$loading({
-        lock: true,
-        text: '加载中~',
-        spinner: 'el-icon-loading',
-        background: 'rgba(0, 0, 0, 0.7)'
-      });
+      window.$dialogClose = window.APP.$mloading();
     }
   }
 });

@@ -77,14 +77,18 @@
         }
         let formData = new FormData();
         formData.append('file',file);
+        let loadingClose = this.$mloading({text : '上传中'});
         this.$http({
           method : 'post',
           url : '/upload.json',
           data : formData,
           mheaders : true,
         }).then((res) => {
+          loadingClose.close();
           this.$emit('update:img',res.result.path);
           this.$emit('successCBK',res.result.path);
+        }).catch(() => {
+          loadingClose.close();
         });
       },
       // x
