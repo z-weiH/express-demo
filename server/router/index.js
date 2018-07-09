@@ -1,6 +1,5 @@
 import fs from 'fs'
 import baseResult from './../components/response'
-import evn_var from './../env.js'
 let router = (app) => {
   
   // router 由前端 控制 ， 重定向到 index.html
