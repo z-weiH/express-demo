@@ -72,6 +72,10 @@ let sqlMap = {
       });
     });
   },
+  /* 
+    SELECT * FROM `user` WHERE userName like "%%"  AND nickName like "%%" LIMIT 1,1;
+    SELECT FOUND_ROWS();
+  */
   // 用户列表
   queryUserList({userName,nickName}) {
     return new Promise((resolve,reject) => {
