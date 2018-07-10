@@ -15,10 +15,10 @@
 
       <el-row :gutter="20">
         <el-col :span="12">
-          <div class="wow bounceInLeft height-600 bg-yellow"></div>
+          <div class="wow bounceInLeft height-600 bg-yellow" data-wow-delay="1.5s"></div>
         </el-col>
         <el-col :span="12">
-          <div class="wow bounceInRight height-600 bg-red"></div>
+          <div class="wow bounceInRight height-600 bg-red" data-wow-delay="1.8s"></div>
         </el-col>
       </el-row>
 
@@ -118,7 +118,7 @@
 
 .wow-box{
   font: 30px/280px "Microsoft Yahei";
-  overflow-x: hidden;
+  overflow: hidden;
   .list{
     text-align: center;
     // 圆样式
