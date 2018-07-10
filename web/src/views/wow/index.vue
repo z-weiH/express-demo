@@ -8,12 +8,58 @@
         <div class="wow fadeInDown circular bg-red" data-wow-delay="1.2s"></div>
       </div>
 
-      <div class="of-hide">
+      <!-- <div class="of-hide">
         <div class="wow bounceInLeft left-box bg-yellow mr-20"></div>
         <div class="wow bounceInRight right-box bg-red"></div>
+      </div> -->
+
+      <el-row :gutter="20">
+        <el-col :span="12">
+          <div class="wow bounceInLeft height-600 bg-yellow"></div>
+        </el-col>
+        <el-col :span="12">
+          <div class="wow bounceInRight height-600 bg-red"></div>
+        </el-col>
+      </el-row>
+
+      <el-row :gutter="20" class="mt-20">
+        <el-col :span="12">
+          <el-row :gutter="10">
+            <el-col :span="11">
+              <div class="wow bounceInLeft height-600 bg-purple" data-wow-delay="0.5s"></div>
+            </el-col>
+            <el-col :span="13">
+              <div class="wow bounceInLeft height-295 bg-green mb-10" data-wow-delay="0.5s"></div>
+              <div class="wow bounceInLeft height-295 bg-blue" data-wow-delay="0.5s"></div>
+            </el-col>
+          </el-row>
+          <div class="wow fadeInUp height-295 bg-red mt-10" data-wow-delay="0.5s"></div>
+        </el-col>
+
+        <el-col :span="12">
+          <div class="wow fadeInDown height-295 bg-yellow mb-10" data-wow-delay="0.5s"></div>
+          <el-row :gutter="10">
+            <el-col :span="11">
+              <div class="wow bounceInRight height-600 bg-purple" data-wow-delay="0.5s"></div>
+            </el-col>
+            <el-col :span="13">
+              <div class="wow bounceInRight height-295 bg-red  mb-10" data-wow-delay="0.5s"></div>
+              <div class="wow bounceInRight height-295 bg-blue" data-wow-delay="0.5s"></div>
+            </el-col>
+          </el-row>
+        </el-col>
+      </el-row>
+
+      <div>
+        <div class="wow rollIn circular bg-blue" data-wow-delay="0.3s"></div>
+        <div class="wow rollIn circular bg-green" data-wow-delay="0.6s"></div>
+        <div class="wow rollIn circular bg-purple" data-wow-delay="0.9s"></div>
+        <div class="wow rollIn circular bg-red" data-wow-delay="1.2s"></div>
       </div>
 
-      <div class="clear"></div>
+      
+
+      <!-- <div class="clear"></div>
 
       <div class="ov-hide mt-20">
         <div class="fl box" style="height: 600px">
@@ -25,16 +71,11 @@
         </div>
       </div>
 
-      <div>
-        <div class="wow fadeInUp circular bg-blue" data-wow-delay="0.3s"></div>
-        <div class="wow fadeInUp circular bg-green" data-wow-delay="0.6s"></div>
-        <div class="wow fadeInUp circular bg-purple" data-wow-delay="0.9s"></div>
-        <div class="wow fadeInUp circular bg-red" data-wow-delay="1.2s"></div>
-      </div>
+      
 
       <div>
         <div class="wow rollIn circular bg-yellow" data-wow-delay="0.9s"></div>
-      </div>
+      </div> -->
 
     </div>
   </div>
@@ -77,6 +118,7 @@
 
 .wow-box{
   font: 30px/280px "Microsoft Yahei";
+  overflow-x: hidden;
   .list{
     text-align: center;
     // 圆样式
@@ -88,26 +130,14 @@
       margin: 30px 15px;
       vertical-align: middle;
     }
-    .left-box , .right-box{
-      width: calc(50% - 10px);
-      float: left;
+    .height-600{
       height: 600px;
     }
-    .box{
-      width: calc(50% - 10px);
+    .height-300{
+      height: 300px;
     }
-    .box-1{
-      width: 100%;
-      height: 600px;
-      display: inline-block;
-    }
-    .box-2{
-      margin-bottom: 20px;
-    }
-    .box-2 , .box-3{
-      width: 100%;
-      height: 290px;
-      float: left;
+    .height-295{
+      height: 295px;
     }
   }
 }
