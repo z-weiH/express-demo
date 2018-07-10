@@ -5,5 +5,5 @@ cnpm install;
 npm run build;
 cd ../server;
 cnpm install;
-forever restart index.js;
+pm2 restart 0;
 echo "--------End--------"
