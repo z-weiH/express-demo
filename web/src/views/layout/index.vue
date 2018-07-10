@@ -63,6 +63,10 @@
       height: 100%;
       overflow-x: auto;
     }
+    .el-scrollbar__view{
+      padding-bottom: 50px;
+      padding-right: 20px;
+    }
   }
 }
 

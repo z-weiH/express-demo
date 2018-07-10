@@ -47,6 +47,7 @@
   height: 50px;
   line-height: 50px;
   overflow: hidden;
+  padding-right: 20px;
   .fr{
     .user-text{
       color: #ffd04b;
