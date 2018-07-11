@@ -4,5 +4,6 @@ export default (database = 'demo') => {
     user     : 'root', // 用户名
     password : '123456', // 密码
     database : database, // 数据库名
+    multipleStatements : true, // 允许多条件查询
   }
 }
