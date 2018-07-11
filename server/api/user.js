@@ -229,14 +229,6 @@ let api = (app) => {
         delete v.passWord;
         return v;
       });
-      // 排序（倒叙）
-      result[0].sort((v,v1) => {
-        return (
-          v.createTime > v1.createTime ? -1 :
-          v.createTime < v1.createTime ? 1 :
-          v.createTime === v1.createTime ? 0 : null
-        )
-      });
       let obj = {
         result : {
           list : result[0],

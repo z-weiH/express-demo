@@ -79,7 +79,11 @@ let sqlMap = {
   // 用户列表
   queryUserList({userName,nickName,currentPage,pageSize}) {
     return new Promise((resolve,reject) => {
-      connection.querypoll(`SELECT SQL_CALC_FOUND_ROWS * FROM user WHERE userName like ?  AND nickName like ? LIMIT ?,? ; SELECT FOUND_ROWS();`,
+      connection.querypoll(
+        `
+          SELECT SQL_CALC_FOUND_ROWS * FROM user WHERE userName like ?  AND nickName like ? order by createTime DESC LIMIT ?,? ; 
+          SELECT FOUND_ROWS();
+        `,
         [`%${userName}%` , `%${nickName}%` , (currentPage - 1) * pageSize , (currentPage - 1) * pageSize + +pageSize]
       ,(err,result) => {
         resolve({err,result});
