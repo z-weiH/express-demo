@@ -14,7 +14,7 @@
             </el-form-item>
 
             <el-button @click="handleSearch" type="primary">查询</el-button>
-            <el-button @click="handleExcel">导出Excel</el-button>
+            <el-button @click="handleExcel">导出当前页</el-button>
           </el-form>
         </div>
 
@@ -96,6 +96,8 @@
           data : {
             userName : this.ruleForm.userName,
             nickName : this.ruleForm.nickName,
+            currentPage : this.currentPage,
+            pageSize : this.pageSize,
           },
         });
       },

@@ -366,8 +366,8 @@ let api = (app) => {
 
   // 根据筛选条件 导出Excel
   router.get('/excelExport.json',jsonParser,(req,res) => {
-    let {userName = '',nickName = ''} = req.query;
-    sqlMap.queryUserList({userName,nickName}).then(({err,result}) => {
+    let {currentPage = 1,pageSize = 10,userName = '',nickName = ''} = req.query;
+    sqlMap.queryUserList({userName,nickName,currentPage,pageSize}).then(({err,result}) => {
       let conf = {};
       conf.cols = [
         {caption:'用户名', type:'string',width:30},
@@ -375,7 +375,7 @@ let api = (app) => {
         {caption:'img01', type:'string',width:50},
         {caption:'img02', type:'string',width:60}               
       ];
-      conf.rows = result.map((v) => {
+      conf.rows = result[0].map((v) => {
         return [
           v.userName,
           v.nickName,
