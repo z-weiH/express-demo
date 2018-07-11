@@ -11,6 +11,7 @@ let {
   urlencodedParser,
   multipartMiddleware,
 } = import_module('/components/requestType');
+let cos = import_module('/components/cos');
 
 // multer 配置项 start
 let storage = multer.diskStorage({
@@ -51,12 +52,26 @@ let api = (app) => {
         // 文件删除
         //deleteFile(`/assets/upload/${fileName}`,() => {});
         // 返回 文件ulr
-        res.send(baseResult({
+        /* res.send(baseResult({
           code : 'success',
           result : {
             path : '/upload/' + fileName,
           },
-        }));
+        })); */
+        cos.upload(`/upload/${fileName}`,app_path(`/assets/upload/${fileName}`),(err,data) => {
+          if(!err) {
+            // 文件删除
+            deleteFile(`/assets/upload/${fileName}`,() => {});
+            res.send(baseResult({
+              code : 'success',
+              result : {
+                path : '//' + data.Location,
+              },
+            }));
+          }else{
+            console.log(err);
+          }
+        });
       }else{
         console.log(err);
       }
@@ -111,7 +126,7 @@ let api = (app) => {
   // 文件删除
   app.post('/deleteFile.json',urlencodedParser,(req,res) => {
     let {path} = req.body;
-    deleteFile(`/assets${path}`,(err) => {
+    /* deleteFile(`/assets${path}`,(err) => {
       if(!err) {
         res.send(baseResult({
           code : 'success',
@@ -123,6 +138,18 @@ let api = (app) => {
           code : 'error',
           message : '删除失败' + err,
         }));
+      }
+    }); */
+    // 上传至 腾讯云
+    let derleteArr = path.split('/');
+    cos.delete(`${derleteArr[3]}/${derleteArr[4]}`,(err,data) => {
+      if(!err) {
+        res.send(baseResult({
+          code : 'success',
+          message : '删除成功',
+        }));
+      }else{
+        console.log(err);
       }
     });
   });
