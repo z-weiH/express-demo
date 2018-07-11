@@ -2,6 +2,7 @@ echo "-------Begin-------"
 git pull;
 cd web;
 cnpm install;
+rm -rf dist;
 npm run build;
 cd ../server;
 cnpm install;
