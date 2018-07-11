@@ -224,21 +224,13 @@ let api = (app) => {
   // 查询所有用户
   router.post('/queryUserList.json',urlencodedParser,function(req,res) {
     let {currentPage = 1,pageSize = 10,userName = '',nickName = ''} = req.body;
-    sqlMap.queryUserList({userName,nickName}).then(({err,result}) => {
-      result = result.map((v) => {
+    sqlMap.queryUserList({userName,nickName,currentPage,pageSize}).then(({err,result}) => {
+      result[0] = result[0].map((v) => {
         delete v.passWord;
         return v;
       });
-      // 响应 list
-      let list = [];
-      // 分页
-      for(let i = (currentPage - 1) * pageSize ; i < (currentPage - 1) * pageSize + pageSize ; i ++ ){
-        if(result[i]){
-          list.push(result[i]);
-        }
-      }
       // 排序（倒叙）
-      list.sort((v,v1) => {
+      result[0].sort((v,v1) => {
         return (
           v.createTime > v1.createTime ? -1 :
           v.createTime < v1.createTime ? 1 :
@@ -247,8 +239,8 @@ let api = (app) => {
       });
       let obj = {
         result : {
-          list : list,
-          total : result.length,
+          list : result[0],
+          total : result[1][0]['FOUND_ROWS()'],
         },
       };
       res.send(baseResult(obj));

@@ -73,14 +73,14 @@ let sqlMap = {
     });
   },
   /* 
-    SELECT * FROM `user` WHERE userName like "%%"  AND nickName like "%%" LIMIT 1,1;
+    SELECT SQL_CALC_FOUND_ROWS * FROM `user` WHERE userName like "%%"  AND nickName like "%%" LIMIT 1,1;
     SELECT FOUND_ROWS();
   */
   // 用户列表
-  queryUserList({userName,nickName}) {
+  queryUserList({userName,nickName,currentPage,pageSize}) {
     return new Promise((resolve,reject) => {
-      connection.querypoll(`SELECT * FROM user WHERE userName like ? and nickName like ?;`,
-      [`%${userName}%`,`%${nickName}%`]
+      connection.querypoll(`SELECT SQL_CALC_FOUND_ROWS * FROM user WHERE userName like ?  AND nickName like ? LIMIT ?,? ; SELECT FOUND_ROWS();`,
+        [`%${userName}%` , `%${nickName}%` , (currentPage - 1) * pageSize , (currentPage - 1) * pageSize + +pageSize]
       ,(err,result) => {
         resolve({err,result});
       });
