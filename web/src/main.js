@@ -13,8 +13,11 @@ Vue.prototype.$http = axios;
 
 // element-ui
 import ElementUI from 'element-ui'
-// 装载 element ui
-Vue.use(ElementUI);
+if(process.env.NODE_ENV === 'development') {
+  // 装载 element ui
+  Vue.use(ElementUI);
+}
+
 
 // 样式
 import 'element-ui/lib/theme-chalk/index.css';

@@ -16,7 +16,7 @@ import overtimeExclude from './overtimeExclude'
 /* 
 
 通过npm run dev运行的程序，打印process.env.NODE_ENV显示为：development；
-通过npm run start运行的程序，打印process.env.NODE_ENV显示为：production；
+通过npm run build运行的程序，打印process.env.NODE_ENV显示为：production；
 
 */
 
