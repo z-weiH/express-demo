@@ -68,8 +68,14 @@
 							this.$message.success('登录成功');
 							// 存用户信息
 							localStorage.setItem('loginInfo',JSON.stringify(res.result));
-							
-							this.$router.push('/list');
+							// 返回上一次页面
+							if(this.$route.query.renderurl) {
+								// 判断是否可以进入
+
+								this.$router.push(this.$route.query.renderurl);
+							}else{
+								this.$router.push('/list');
+							}
 						});
           }
 				});

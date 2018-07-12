@@ -29,10 +29,14 @@ axios.interceptors.response.use((res) => { // 状态码 200 回调
 
     // 登录超时
     if(res.data.code === '1008'){
-      $router.push('/login');
+      $router.push(`/login?renderurl=${$router.history.current.path}`);
+      // 清除 用户信息
+      localStorage.removeItem('loginInfo');
     // 用户未登录
     }else if(res.data.code === '1007') {
-      $router.push('/login');
+      $router.push(`/login?renderurl=${$router.history.current.path}`);
+      // 清除 用户信息
+      localStorage.removeItem('loginInfo');
     }
 
     return Promise.reject(res);

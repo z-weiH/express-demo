@@ -89,7 +89,7 @@ let router = new Router({
 router.beforeEach((to, from, next) => {
   // 用户超时 拦截
   if( (overtimeExclude.indexOf(to.path) === -1) && (!localStorage.getItem('loginInfo')) ){
-    router.push('/login');
+    router.push(`/login?renderurl=${to.path}`);
     return;
   }
 
