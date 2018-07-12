@@ -28,6 +28,10 @@
 				</div>
 			</el-form>
 		</div>
+
+		<a class="github-img" href="https://github.com/z-weiH">
+			<img src="@/assets/img/github.png" />
+		</a>
 	</div>
 </template>
 
@@ -119,6 +123,11 @@
 			background: rgba(0, 0, 0, 0.1);
     	border-radius: 5px;
 		}
+	}
+	.github-img{
+		position: absolute;
+		right: 0;
+		top: 0;
 	}
 }
 
