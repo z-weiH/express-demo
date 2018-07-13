@@ -16,11 +16,12 @@ import ElementUI from 'element-ui'
 if(process.env.NODE_ENV === 'development') {
   // 装载 element ui
   Vue.use(ElementUI);
+  // element-ui 样式
+  require('element-ui/lib/theme-chalk/index.css');
 }
 
 
 // 样式
-import 'element-ui/lib/theme-chalk/index.css';
 import '@/assets/css/index.scss'
 import '@/assets/font/iconfont/iconfont.css'
 
