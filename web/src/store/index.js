@@ -3,10 +3,13 @@ import Vuex from 'vuex'
 
 import demo from './modules/demo'
 
-Vue.use(Vuex)
+
+if(process.env.NODE_ENV === 'development') {
+	Vue.use(Vuex)
+}
 
 export default new Vuex.Store({
-    modules: {
-        demo,
-    }
+	modules: {
+		demo,
+	}
 })

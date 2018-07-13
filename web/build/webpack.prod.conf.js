@@ -17,6 +17,9 @@ const webpackConfig = merge(baseWebpackConfig, {
   externals : {
     'vue': 'Vue',    
     'element-ui': 'ELEMENT',
+    'vue-router': 'VueRouter',
+    'vuex': 'Vuex',
+    'axios': 'axios',
   },
   module: {
     rules: utils.styleLoaders({

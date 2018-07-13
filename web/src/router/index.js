@@ -5,7 +5,9 @@ import Router from 'vue-router'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
-Vue.use(Router);
+if(process.env.NODE_ENV === 'development') {
+  Vue.use(Router);
+}
 
 // loading 排除的页面
 import loadingExclude from './loadingExclude'
