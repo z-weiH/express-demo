@@ -5,7 +5,7 @@
     class="upload-box"
   >
     <i v-if="!img" class="upload-add el-icon-plus avatar-uploader-icon"></i>
-    <input v-if="!img" @change="handleChange" type="file" title=" " />
+    <input :key="key" v-if="!img" @change="handleChange" type="file" title=" " />
     <a v-if="img" @click="handleOpen">
       <img :style="{width : imgWidth + 'px' , height : imgHeight ? imgHeight + 'px' : ''}" :src="img" />
     </a>
@@ -53,6 +53,12 @@
         type : Function,
       },
     },
+    data() {
+      return {
+        // 用于重置 input=file
+        key : + new Date(),
+      }
+    },
     methods : {
       // 数据清除
       clearAll() {
@@ -70,7 +76,7 @@
       // 文件上传 change
       handleChange(event) {
         let file = event.target.files[0];
-        event.target.value = '';
+        this.key = +new Date();
         // 校验规则
         if(this.beforeUpload && (this.beforeUpload(file) !== true) ){
           return;
@@ -126,6 +132,8 @@
     cursor: pointer;
     z-index: 5;
     position: absolute;
+    // 解决ie 出现光标闪动问题
+    font-size: 0;
   }
   .upload-add{
     width: 100%;
