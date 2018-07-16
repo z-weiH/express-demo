@@ -55,10 +55,6 @@ let router = (app) => {
   app.all('*', function(req, res, next){
     // 接口不进行缓存
     res.header('Cache-Control','no-store');
-    /* if(evn_var.ENV === 'dev'){
-      next();
-      return;
-    } */
     let userId = req.session.userId;
     // 不需要校验的请求
     let requestUrl = ['/user/login.json','/user/signOut.json'];
