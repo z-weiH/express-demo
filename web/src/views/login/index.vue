@@ -55,6 +55,16 @@
 				},
 			}
 		},
+		beforeCreate() {
+			// 判断用户已经登录 ， 直接跳转至系统页面
+			try{
+				let loginInfo = localStorage.getItem('loginInfo');
+				if(loginInfo) {
+					this.$router.replace('/list');
+				}
+			}catch(err) {
+			}
+		},
 		methods : {
 			handleSubmit() {
 				this.$refs.ruleForm.validate((valid) => {
