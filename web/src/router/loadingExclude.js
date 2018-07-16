@@ -1,9 +1,12 @@
+// loading 排除router
+
 export default [
   '/',
-  '/404',
   '/login',
   '/index.html',
   '/index.htm',
+  '/404',
+  
   '/demo',
   '/wow',
 ]

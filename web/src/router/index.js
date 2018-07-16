@@ -15,6 +15,8 @@ import loadingExclude from './loadingExclude'
 import overtimeExclude from './overtimeExclude'
 // 权限 排除页面
 import jurisdictionExclude from './jurisdictionExclude'
+// 所有 页面 router
+import pages from './pages'
 
 
 /* 
@@ -23,70 +25,10 @@ import jurisdictionExclude from './jurisdictionExclude'
 通过npm run build运行的程序，打印process.env.NODE_ENV显示为：production；
 
 */
-
 let router = new Router({
   // 如果当前是开发环境 开启 hash模式， 否则使用 history模式
   mode: process.env.NODE_ENV !== 'development' ? 'history' : '',
-  routes: [
-    {
-      path : '/',
-      component : resolve => require(['@/views/login'], resolve), 
-    },
-    {
-      path : '/index.html',
-      component : resolve => require(['@/views/login'], resolve), 
-    },
-    {
-      path : '/index.htm',
-      component : resolve => require(['@/views/login'], resolve), 
-    },
-    {
-      path : '/login',
-      component : resolve => require(['@/views/login'], resolve), 
-    },
-    {
-      path: '/404',
-      component : resolve => require(['@/views/404'], resolve), 
-    },
-    {
-      path : '*',
-      redirect : '/404',
-    },
-    {
-      path : '',
-      component : resolve => require(['@/views/layout'], resolve), 
-      children : [
-        {
-          path : '/list',
-          component : resolve => require(['@/views/list'], resolve), 
-          meta : {
-            name : '/list',
-          },
-        },
-        {
-          path : '/demo',
-          component : resolve => require(['@/views/demo'], resolve), 
-          meta : {
-            name : '/demo',
-          },
-        },
-        {
-          path : '/upload',
-          component : resolve => require(['@/views/upload'], resolve), 
-          meta : {
-            name : '/upload',
-          },
-        },
-        {
-          path : '/wow',
-          component : resolve => require(['@/views/wow'], resolve), 
-          meta : {
-            name : '/wow',
-          },
-        },
-      ],
-    },
-  ]
+  routes: pages,
 });
 
 /* 前置钩子 */

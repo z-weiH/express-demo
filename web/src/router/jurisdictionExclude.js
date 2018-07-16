@@ -1,3 +1,5 @@
+// 权限排除 router
+
 export default [
   '/',
   '/login',

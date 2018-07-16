@@ -1,3 +1,5 @@
+// 超时排除 router
+
 export default [
   '/',
   '/login',
