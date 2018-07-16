@@ -1,4 +1,5 @@
 import { Message } from 'element-ui';
+import $router from '@/router'
 
 /**
  * @param {string} url
@@ -28,7 +29,21 @@ let exportFile = (obj) => {
     // 获得body后台返回的参数
     let html = body.innerText;
     console.log(html,'iframe导出-后台返回值');
-    Message.error(JSON.parse(html).message);
+    let data = JSON.parse(html);
+    Message.error(data.message);
+
+    // 登录超时
+    if(data.code === '1008'){
+      $router.push(`/login?renderurl=${$router.history.current.path}`);
+      // 清除 用户信息
+      localStorage.removeItem('loginInfo');
+    // 用户未登录
+    }else if(data.code === '1007') {
+      $router.push(`/login?renderurl=${$router.history.current.path}`);
+      // 清除 用户信息
+      localStorage.removeItem('loginInfo');
+    }
+
   };
 
   document.body.appendChild(iframe);

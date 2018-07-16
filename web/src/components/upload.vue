@@ -108,10 +108,6 @@
       handleOpen() {
         window.open(this.img);
       },
-      // 文件下载方法
-      handleDownLoad() {
-        window.open(this.img.replace(/-website/g,''));
-      },
     },
   }
 </script>

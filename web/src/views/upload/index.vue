@@ -12,13 +12,13 @@
     </el-upload> -->
     <div class="mt-20">
       <upload :upload-close="uploadClose1" @successCBK="successCBK1" ref="upload1" :img.sync="img01"></upload>
-      <el-button v-if="img01" @click="handleDownload('upload1')">img01下载</el-button>
+      <el-button v-if="img01" @click="handleDownload(img01)">img01下载</el-button>
       <p>img01</p>
     </div>
     
     <div class="mt-20">
       <upload :upload-close="uploadClose2" @successCBK="successCBK2" ref="upload2" :img.sync="img02"></upload>
-      <el-button v-if="img02" @click="handleDownload('upload2')">img02下载</el-button>
+      <el-button v-if="img02" @click="handleDownload(img02)">img02下载</el-button>
       <p>img02</p>
     </div>
   </div>
@@ -54,8 +54,10 @@
         this.img01 = res.result.path;
       },
       // 文件下载
-      handleDownload(ref) {
-        this.$refs[ref].handleDownLoad();
+      handleDownload(path) {
+        download({
+          url : path.replace(/-website/g,''),
+        });
       },
       // 文件删除
       uploadClose1() {
