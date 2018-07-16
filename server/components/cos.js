@@ -22,6 +22,9 @@ export default {
       Key: Key,
       FilePath: FilePath,
     }, function (err, data) {
+      // 处理数据
+      data.staticPath = 'https://demo-1256231135.cos-website.ap-chengdu.myqcloud.com/' + data.Location.split('/').splice(1).join('/');
+      data.Location = '//' + data.Location;
       callback(err,data);
     });
   },

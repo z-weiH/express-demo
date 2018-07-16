@@ -65,7 +65,8 @@ let api = (app) => {
             res.send(baseResult({
               code : 'success',
               result : {
-                path : '//' + data.Location,
+                path : data.Location,
+                staticPath : data.staticPath,
               },
             }));
           }else{
@@ -140,9 +141,9 @@ let api = (app) => {
         }));
       }
     }); */
-    // 上传至 腾讯云
+    // 删除腾讯云 文件
     let derleteArr = path.split('/');
-    cos.delete(`${derleteArr[3]}/${derleteArr[4]}`,(err,data) => {
+    cos.delete(`${derleteArr.splice(3).join('/')}`,(err,data) => {
       if(!err) {
         res.send(baseResult({
           code : 'success',
