@@ -392,6 +392,21 @@ let api = (app) => {
     });
   });
 
+  // 判断当前是否登录过
+  router.get('/isLogin.json',(req,res) => {
+    if(req.session.userId) {
+      res.send(baseResult({
+        code : 'success',
+        result : true,
+      }));
+    }else{
+      res.send(baseResult({
+        code : 'success',
+        result : false,
+      }));
+    }
+  });
+
   app.use('/user',router);
 };
 
