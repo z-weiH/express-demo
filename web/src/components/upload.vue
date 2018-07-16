@@ -91,8 +91,8 @@
           mheaders : true,
         }).then((res) => {
           loadingClose.close();
-          this.$emit('update:img',res.result.path);
-          this.$emit('successCBK',res.result.path);
+          this.$emit('update:img',res.result.staticPath);
+          this.$emit('successCBK',res.result.staticPath);
         }).catch(() => {
           loadingClose.close();
         });
@@ -107,6 +107,10 @@
       // 新窗口打开图片
       handleOpen() {
         window.open(this.img);
+      },
+      // 文件下载方法
+      handleDownLoad() {
+        window.open(this.img.replace(/-website/g,''));
       },
     },
   }
