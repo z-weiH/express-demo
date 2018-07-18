@@ -38,6 +38,9 @@ Vue.prototype.$mloading = ({lock = true , text = '加载中~'} = {}) => {
   });
 }
 
+// cookie
+import cookie from 'js-cookie'
+Vue.prototype.$cookie = cookie;
 
 /* eslint-disable no-new */
 window.APP = new Vue({
