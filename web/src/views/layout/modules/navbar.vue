@@ -1,6 +1,14 @@
 <template>
   <div class="navbar-box">
     <div class="fr">
+      <el-dropdown trigger="click" @command="handleLange" class="mr-20">
+        <i class="iconfont icon-language"></i>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item command="en">English</el-dropdown-item>
+          <el-dropdown-item command="zh">中文</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+
       <el-dropdown trigger="click" @command="handleClick">
         <span class="user-text">
           {{nickName}}
@@ -26,6 +34,10 @@
       }catch(err) {}
     },
     methods : {
+      // 语言切换 change
+      handleLange(val) {
+        this.$i18n.locale = val;
+      },
       handleClick(val) {
         if(val === 'signOut'){
           this.$http({

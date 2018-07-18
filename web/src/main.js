@@ -11,13 +11,23 @@ import axios from 'axios'
 import './axios'
 Vue.prototype.$http = axios;
 
+// 国际化
+import i18n from './lang' 
+
 // element-ui
 import ElementUI from 'element-ui'
 if(process.env.NODE_ENV === 'development') {
   // 装载 element ui
-  Vue.use(ElementUI);
+  Vue.use(ElementUI,{
+    i18n: (key, value) => i18n.t(key, value),
+  });
   // element-ui 样式
   require('element-ui/lib/theme-chalk/index.css');
+// 增加else 为了， element-国际化 生效 ， 但是并没有增加文件大小
+}else{
+  Vue.use(ElementUI,{
+    i18n: (key, value) => i18n.t(key, value),
+  });
 }
 
 
@@ -47,6 +57,7 @@ window.APP = new Vue({
   el: '#app',
   router,
   store,
+  i18n,
   components: { App },
   template: '<App/>'
 })
