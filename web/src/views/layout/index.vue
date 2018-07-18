@@ -54,7 +54,7 @@
   }
   // 设置滚动条 样式
   .m-scrollbar-box{
-    height: calc(100% - 50px);
+    height: calc(100% - 70px);
     overflow: hidden;
     .el-scrollbar{
       height: 100%;
