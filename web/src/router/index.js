@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 // 进度条
 import NProgress from 'nprogress'
+NProgress.configure({ showSpinner: false });  
 import 'nprogress/nprogress.css'
 
 if(process.env.NODE_ENV === 'development') {
