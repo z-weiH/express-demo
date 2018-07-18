@@ -9,4 +9,5 @@ export default [
   
   '/demo',
   '/wow',
+  '/i18',
 ]

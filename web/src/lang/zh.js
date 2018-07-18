@@ -1,15 +1,5 @@
 export default {
-  list : {
-    userlist : '用户列表',
-    userNamePlaceholder : '请输入用户名',
-    nickNamePlaceholder : '请输入昵称',
-    searchBtn : '查询',
-    exportBtn : '导出当前页',
-    addUserBtn : '新增用户',
-    userName : '用户名',
-    nickName : '昵称',
-    operation : '操作',
-    edit : '修改',
-    delete : '删除',
+  lang : {
+    demo : '当黑暗将我们淹没，所有光明都已逝去。那不屈的嘶吼和永不低头的信仰使我们迎难而上，无人可挡。',
   },
 }

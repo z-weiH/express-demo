@@ -55,6 +55,13 @@ let pages = [
           name : '/wow',
         },
       },
+      {
+        path : '/i18',
+        component : resolve => require(['@/views/i18'], resolve), 
+        meta : {
+          name : '/i18',
+        },
+      },
     ],
   },
 ];

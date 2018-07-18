@@ -1,38 +1,38 @@
 <template>
   <div>
     <div>
-      <p>{{$t('list.userlist')}}</p>
+      <p>用户列表</p>
       <div class="mt-20">
         <div class="fl">
           <el-form :inline="true" ref="ruleForm" :model="ruleForm">
             <el-form-item label="" prop="userName">
-              <el-input v-model.trim="ruleForm.userName" :placeholder="$t('list.userNamePlaceholder')"></el-input>
+              <el-input v-model.trim="ruleForm.userName" placeholder="请输入用户名"></el-input>
             </el-form-item>
 
             <el-form-item label="" prop="nickName">
-              <el-input v-model.trim="ruleForm.nickName" :placeholder="$t('list.nickNamePlaceholder')"></el-input>
+              <el-input v-model.trim="ruleForm.nickName" placeholder="请输入昵称"></el-input>
             </el-form-item>
 
-            <el-button @click="handleSearch" type="primary">{{$t('list.searchBtn')}}</el-button>
-            <el-button @click="handleExcel">{{$t('list.exportBtn')}}</el-button>
+            <el-button @click="handleSearch" type="primary">查询</el-button>
+            <el-button @click="handleExcel">导出当前页</el-button>
           </el-form>
         </div>
 
         <div class="fr">
-          <el-button @click="handleAdd">{{$t('list.addUserBtn')}}</el-button>  
+          <el-button @click="handleAdd">新增用户</el-button>  
         </div> 
       </div>
     </div>
     <el-table
       :data="tableData"
       style="width: 100%">
-      <el-table-column prop="userName" :label="$t('list.userName')"></el-table-column>
-      <el-table-column prop="nickName" :label="$t('list.nickName')"></el-table-column>
-      <el-table-column :label="$t('list.operation')">
+      <el-table-column prop="userName" label="用户名"></el-table-column>
+      <el-table-column prop="nickName" label="昵称"></el-table-column>
+      <el-table-column label="操作">
         <template slot-scope="scope" v-if="scope.row.id !== 'admin'">
-          <el-button @click="handleEdit(scope.row)" type="text">{{$t('list.edit')}}</el-button>
+          <el-button @click="handleEdit(scope.row)" type="text">修改</el-button>
           <span>|</span>
-          <el-button @click="handleDelete(scope.row)" type="text">{{$t('list.delete')}}</el-button>
+          <el-button @click="handleDelete(scope.row)" type="text">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
