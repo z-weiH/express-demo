@@ -62,6 +62,13 @@ let pages = [
           name : '/i18',
         },
       },
+      {
+        path : '/tinymce',
+        component : resolve => require(['@/views/tinymce'], resolve), 
+        meta : {
+          name : '/tinymce',
+        },
+      }
     ],
   },
 ];

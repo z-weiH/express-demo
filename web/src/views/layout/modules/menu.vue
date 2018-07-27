@@ -75,6 +75,11 @@
             href : '/i18',
             id : 5,
           },
+          {
+            label : 'tinymce（富文本）',
+            href : '/tinymce',
+            id : 6,
+          },
         ],
       }
     },
