@@ -12,8 +12,11 @@
   // 引入样式
   import 'tinymce/skins/lightgray/skin.min.css'
   import 'tinymce/skins/lightgray/content.min.css'
+  // 引入语言包
+  import './langs/zh_CN.js'
 
   export default {
+    
     data() {
       return {
         id : `tinymce-${+ new Date()}`,
@@ -21,6 +24,7 @@
     },
     mounted() {
       tinymce.init({
+        language : 'zh_CN',
         selector : `#${this.id}`,
       });
     },
