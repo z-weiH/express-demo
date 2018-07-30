@@ -1,6 +1,6 @@
 <template>
   <div class="components-tinymce">
-    <textarea :id="id"></textarea>
+    <textarea :style="{height : height}" :id="id"></textarea>
   </div>
 </template>
 
@@ -16,17 +16,54 @@
   import './langs/zh_CN.js'
 
   export default {
-    
+    props : {
+      height : {
+        type : String,
+        default : '500px',
+      },
+    },
     data() {
       return {
-        id : `tinymce-${+ new Date()}`,
+        id : '',
       }
     },
     mounted() {
-      tinymce.init({
-        language : 'zh_CN',
-        selector : `#${this.id}`,
-      });
+      this.init();
+    },
+    methods : {
+      init(callback) {
+        this.id = `tinymce-${+ new Date()}`;
+        this.$nextTick(() => {
+          this.tinymce = tinymce.init({
+            language : 'zh_CN',
+            selector : `#${this.id}`,
+            focus_alert : false,
+          });
+          callback && callback();
+        });
+      },
+
+      // 富文本 相关方法 start
+      
+      // 销毁
+      destroyTinymce() {
+        tinymce.get(this.id).destroy();
+      },
+      // 设置
+      setContent(value) {
+        tinymce.get(this.id).setContent(value)
+      },
+      // 获取
+      getContent() {
+        return tinymce.get(this.id).getContent()
+      },
+      // 在光标处 设置数据
+      execCommand(value) {
+        tinymce.execCommand("mceInsertContent", false, value);
+      },
+
+
+      // 富文本 相关方法 end
     },
   }
 </script>
@@ -34,7 +71,10 @@
 <style lang="scss" scoped>
 
 .components-tinymce{
-
+  /* height: calc(100vh - 120px);
+  textarea{
+    display: inline-block;
+  } */
 }
 
 </style>
