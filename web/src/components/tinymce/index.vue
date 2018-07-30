@@ -16,8 +16,13 @@
   import './langs/zh_CN.js'
 
   // 引入 异步加载插件
+  let app;
   import plugins from './plugins'
-  Promise.all(plugins.map((v) => import(`tinymce/plugins/${v}/plugin`))).then(() => {});
+  Promise.all(plugins.map((v) => import(`tinymce/plugins/${v}/plugin`))).then(() => {
+    // 插件加载完成 重新渲染
+    app && app.destroyTinymce();
+    app && app.init();
+  });
 
   export default {
     props : {
@@ -32,6 +37,7 @@
       }
     },
     mounted() {
+      app = this;
       this.init();
     },
     methods : {
