@@ -15,6 +15,10 @@
   // 引入语言包
   import './langs/zh_CN.js'
 
+  // 引入 异步加载插件
+  import plugins from './plugins'
+  Promise.all(plugins.map((v) => import(`tinymce/plugins/${v}/plugin`))).then(() => {});
+
   export default {
     props : {
       height : {
@@ -38,6 +42,20 @@
             language : 'zh_CN',
             selector : `#${this.id}`,
             focus_alert : false,
+            plugins : plugins,
+            // 文件本地上传 ， 增加此方法
+            images_upload_handler : (blobInfo, success, failure) => {
+              let formData = new FormData();
+              formData.append('file',blobInfo.blob());
+              this.$http({
+                url : '/upload.json',
+                method : 'post',
+                data : formData,
+                mheaders : true,
+              }).then((res) => {
+                success(res.result.staticPath);
+              });
+            },
           });
           callback && callback();
         });
