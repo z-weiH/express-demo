@@ -11,10 +11,12 @@ export default [
   'code', // 源代码
   'preview', // 预览
   'textcolor', // 文字颜色，背景颜色
+  'colorpicker', // 颜色支持自定义
   'hr', // 水平分割线
   'charmap', // 特殊符号
   'emoticons', // 表情
   'print', // 打印
   'directionality', // 文字对齐方式 从左到右，从右到左
   'pagebreak', // 分页符
+  'contextmenu', // 右键菜单
 ]

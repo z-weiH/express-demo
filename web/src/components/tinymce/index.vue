@@ -48,6 +48,7 @@
           this.tinymce = tinymce.init({
             language : 'zh_CN',
             selector : `#${this.id}`,
+            // 离开页面 保存提示
             focus_alert : false,
             // 配置插件
             plugins : plugins,
