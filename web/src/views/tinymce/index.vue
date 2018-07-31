@@ -30,7 +30,7 @@
     methods : {
       windowResize() {
         this.$refs.tinymce.destroyTinymce();
-        this.height = document.body.clientHeight - 120 - 70 - 35 + 'px';
+        this.height = document.body.clientHeight - 120 - (34 * 3) - 35 + 'px';
         this.$refs.tinymce.init();
       },
     },
