@@ -19,4 +19,6 @@ export default [
   'directionality', // 文字对齐方式 从左到右，从右到左
   'pagebreak', // 分页符
   'contextmenu', // 右键菜单
+  'visualblocks', // 显示出块级元素
+  'visualchars', // 显示出隐藏字符
 ]

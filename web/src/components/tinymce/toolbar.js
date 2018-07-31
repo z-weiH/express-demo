@@ -64,8 +64,25 @@ let toolbar2 =
     charmap emoticons | 
     print fullscreen | 
     ltr rtl | 
-    spellchecker | 
     visualchars visualblocks pagebreak`;
+
+  /* 
+    对应中文
+    table - 表格
+    hr - 水平分割线
+    removeformat - 清除格式
+    subscript - 下标
+    superscript - 上标
+    charmap - 特殊符号
+    emoticons - 表情
+    print - 打印
+    fullscreen - 全屏
+    ltr - 从左到右
+    rtl - 从右到左
+    visualchars - 显示不可见字符
+    visualblocks - 显示区块边框
+    pagebreak - 分页符
+  */
 
 export default [
   toolbar1,
