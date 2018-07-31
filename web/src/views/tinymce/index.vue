@@ -1,6 +1,11 @@
 <template>
   <div class="tinymce">
     <tinymce ref="tinymce" :height.sync="height"></tinymce>
+    <div class="mt-20">
+      <el-button @click="handleSetContent">设置</el-button>
+      <el-button @click="handleGetContent">获取</el-button>
+      <el-button @click="handleExecCommand">替换/插入</el-button>
+    </div>
   </div>
 </template>
 
@@ -28,10 +33,21 @@
       window.removeEventListener('resize',this.windowResize);
     },
     methods : {
+      // win resize 回调
       windowResize() {
         this.$refs.tinymce.destroyTinymce();
-        this.height = document.body.clientHeight - 120 - (34 * 3) - 35 + 'px';
+        this.height = document.body.clientHeight - 120 - (35 * 3) - 35 - 35 - 60 + 'px';
         this.$refs.tinymce.init();
+      },
+      
+      handleSetContent() {
+        this.$refs.tinymce.setContent('设置数据');
+      },
+      handleGetContent() {
+        this.$message.success(this.$refs.tinymce.getContent());
+      },
+      handleExecCommand() {
+        this.$refs.tinymce.execCommand('插入数据');
       },
     },
   }
