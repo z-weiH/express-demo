@@ -11,6 +11,7 @@
 
 <script>
   import tinymce from '@/components/tinymce'
+  import copy from '@/assets/js/copy'
   export default {
     components : {
       tinymce,
@@ -44,7 +45,8 @@
         this.$refs.tinymce.setContent('设置数据');
       },
       handleGetContent() {
-        this.$message.success(this.$refs.tinymce.getContent());
+        this.$message.success('复制成功');
+        copy(this.$refs.tinymce.getContent());
       },
       handleExecCommand() {
         this.$refs.tinymce.execCommand('插入数据');
