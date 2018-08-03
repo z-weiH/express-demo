@@ -10,4 +10,5 @@ export default [
   '/demo',
   '/wow',
   '/i18',
+  '/highlight'
 ]

@@ -80,6 +80,11 @@
             href : '/tinymce',
             id : 6,
           },
+          {
+            label : 'highlight.js（代码高亮）',
+            href : '/highlight',
+            id : 7,
+          },
         ],
       }
     },

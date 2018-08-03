@@ -4,6 +4,7 @@
     <div class="mt-20">
       <el-button @click="handleSetContent">设置</el-button>
       <el-button @click="handleGetContent">获取</el-button>
+      <el-button @click="handleGetContentText">获取纯文本</el-button>
       <el-button @click="handleExecCommand">替换/插入</el-button>
     </div>
   </div>
@@ -50,6 +51,10 @@
       },
       handleExecCommand() {
         this.$refs.tinymce.execCommand('插入数据');
+      },
+      handleGetContentText() {
+        this.$message.success('复制成功');
+        copy(this.$refs.tinymce.getContentText());
       },
     },
   }

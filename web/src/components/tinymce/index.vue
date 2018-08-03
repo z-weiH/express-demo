@@ -126,9 +126,13 @@
       setContent(value) {
         tinymce.get(this.id).setContent(value)
       },
-      // 获取
+      // 获取 html
       getContent() {
         return tinymce.get(this.id).getContent()
+      },
+      // 获取纯文本
+      getContentText() {
+        return tinymce.get(this.id).getContent({ 'format' : 'text' })
       },
       // 在光标处 设置数据
       execCommand(value) {

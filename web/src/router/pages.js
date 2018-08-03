@@ -68,7 +68,14 @@ let pages = [
         meta : {
           name : '/tinymce',
         },
-      }
+      },
+      {
+        path : '/highlight',
+        component : resolve => require(['@/views/highlight'], resolve), 
+        meta : {
+          name : '/highlight',
+        },
+      },
     ],
   },
 ];
