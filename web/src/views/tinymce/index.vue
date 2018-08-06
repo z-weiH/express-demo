@@ -23,12 +23,22 @@
       }
     },
     mounted() {
-      window.$dialogClose.close();
-
+      // 绑定事件 页面缩放初始化 编辑器大小
       window.addEventListener('resize',this.windowResize);
+      // 初始化 编辑器
       this.$refs.tinymce.init(() => {
         this.windowResize();
       });
+
+      // 以下逻辑 用于判断编辑器是否加载完成
+      let fn = () => {
+        if(!document.querySelector('.tinymce .mce-tinymce')) {
+          setTimeout(fn,50);
+        }else{
+          window.$dialogClose.close();
+        }
+      }
+      fn();
     },
     // 销毁回调
     destroyed() {
