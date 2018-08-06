@@ -111,6 +111,11 @@
               });
             },
 
+            templates: [
+              {title: '模板1', content: '<div>标题：</div><p>模板1</p>'},
+              {title: '模板2', content: '<div>标题：</div><p>模板2</p>'}
+            ],
+
           });
           callback && callback();
         });

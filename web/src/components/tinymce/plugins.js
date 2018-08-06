@@ -21,4 +21,6 @@ export default [
   'contextmenu', // 右键菜单
   'visualblocks', // 显示出块级元素
   'visualchars', // 显示出隐藏字符
+  'media', // 视频
+  'template', // 模板
 ]

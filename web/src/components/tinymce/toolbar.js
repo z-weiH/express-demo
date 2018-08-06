@@ -64,7 +64,7 @@ let toolbar2 =
     charmap emoticons | 
     print fullscreen | 
     ltr rtl | 
-    visualchars visualblocks pagebreak`;
+    visualchars visualblocks template pagebreak`;
 
   /* 
     对应中文
