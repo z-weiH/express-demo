@@ -86,6 +86,11 @@
             style_formats_merge : true,
             style_formats : [
               {
+                title: '首行缩进',
+                block: 'p',
+                styles: { 'text-indent': '2em' }
+              },
+              {
                 title: '行高',
                 items: [
                   {title: '1', styles: { 'line-height': '1' }, inline: 'span'},
