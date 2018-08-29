@@ -113,6 +113,8 @@
                 mheaders : true,
               }).then((res) => {
                 success(res.result.staticPath);
+              }).catch(() => {
+                failure('网络出错');
               });
             },
 
