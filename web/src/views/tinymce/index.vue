@@ -1,6 +1,6 @@
 <template>
   <div class="tinymce">
-    <tinymce ref="tinymce" :height.sync="height"></tinymce>
+    <tinymce ref="tinymce" :height="height"></tinymce>
     <div class="mt-20">
       <el-button @click="handleSetContent">设置</el-button>
       <el-button @click="handleGetContent">获取</el-button>
@@ -19,16 +19,12 @@
     },
     data() {
       return {
-        height : '100%',
+        height : 300,
       }
     },
     mounted() {
       // 绑定事件 页面缩放初始化 编辑器大小
       window.addEventListener('resize',this.windowResize);
-      // 初始化 编辑器
-      this.$refs.tinymce.init(() => {
-        this.windowResize();
-      });
 
       // 以下逻辑 用于判断编辑器是否加载完成
       let fn = () => {
@@ -36,6 +32,7 @@
           setTimeout(fn,50);
         }else{
           window.$dialogClose.close();
+          this.windowResize();
         }
       }
       fn();
@@ -47,9 +44,7 @@
     methods : {
       // win resize 回调
       windowResize() {
-        this.$refs.tinymce.destroyTinymce();
-        this.height = document.body.clientHeight - 120 - (35 * 3) - 35 - 35 - 60 + 'px';
-        this.$refs.tinymce.init();
+        this.height = document.body.clientHeight - 120 - (35 * 3) - 35 - 35 - 60;
       },
       
       handleSetContent() {

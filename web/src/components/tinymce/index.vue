@@ -1,6 +1,6 @@
 <template>
   <div class="components-tinymce">
-    <textarea :style="{height : height}" :id="id"></textarea>
+    <textarea :style="{height : height + 'px'}" :id="id"></textarea>
   </div>
 </template>
 
@@ -28,14 +28,20 @@
   export default {
     props : {
       height : {
-        type : String,
-        default : '500px',
+        type : Number,
+        default : 500,
       },
     },
     data() {
       return {
         id : '',
       }
+    },
+    watch : {
+      height(val) {
+        this.destroyTinymce();
+        this.init();
+      },
     },
     mounted() {
       app = this;
