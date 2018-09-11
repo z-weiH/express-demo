@@ -7,4 +7,6 @@ export default [
   '/user/signOut.json',
   // 判断用户是否登录
   '/user/isLogin.json',
+  // 微信接口
+  '/weixin.json',
 ]
