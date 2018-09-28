@@ -76,6 +76,13 @@ let pages = [
           name : '/highlight',
         },
       },
+      {
+        path : '/pdfjs',
+        component : resolve => require(['@/views/pdfjs'], resolve), 
+        meta : {
+          name : '/pdfjs',
+        },
+      },
     ],
   },
 ];

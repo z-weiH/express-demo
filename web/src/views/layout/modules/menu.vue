@@ -85,6 +85,11 @@
             href : '/highlight',
             id : 7,
           },
+          {
+            label : 'pdf.js',
+            href : '/pdfjs',
+            id : 8,
+          },
         ],
       }
     },
