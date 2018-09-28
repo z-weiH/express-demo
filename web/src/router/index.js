@@ -85,11 +85,11 @@ router.afterEach((to, from) => {
   NProgress.done();
   
   // loading
-  if(loadingExclude.indexOf(to.path) === -1) {
+  /* if(loadingExclude.indexOf(to.path) === -1) {
     if(window.APP) {
       window.$dialogClose = window.APP.$mloading();
     }
-  }
+  } */
 });
 
 export default router
