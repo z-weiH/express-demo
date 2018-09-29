@@ -1,5 +1,6 @@
 <template>
   <div class="pdfjs-box">
+    <a href="/static/generic/web/viewer.html?file=http://image.cache.timepack.cn/nodejs.pdf" target="_blank">新窗口打开pdf</a> 
     <iframe src="/static/generic/web/viewer.html?file=http://image.cache.timepack.cn/nodejs.pdf"></iframe>
   </div>
 </template>
