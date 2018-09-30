@@ -9,7 +9,13 @@ import router from './router'
 // api 接口
 import api from './api'
 
+// gzip 压缩静态文件
+import compression from 'compression'
+
 export default (app) => {
+  // 尽量在其他中间件前使用compression
+  app.use(compression());
+
   session(app);
   cookie(app);
   assets(app);
