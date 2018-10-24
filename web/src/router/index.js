@@ -39,10 +39,10 @@ router.beforeEach((to, from, next) => {
   NProgress.start();
   
   // 用户超时 拦截
-  if( (overtimeExclude.indexOf(to.path) === -1) && (!localStorage.getItem('loginInfo')) ){
+  /* if( (overtimeExclude.indexOf(to.path) === -1) && (!localStorage.getItem('loginInfo')) ){
     router.push(`/login?renderurl=${to.path}`);
     return;
-  }
+  } */
 
   // 权限判断 start
     // 环境 判断
