@@ -90,6 +90,11 @@
             href : '/pdfjs',
             id : 8,
           },
+          {
+            label : '百度地图',
+            href : '/map',
+            id : 9,
+          },
         ],
       }
     },

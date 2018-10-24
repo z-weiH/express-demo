@@ -83,6 +83,13 @@ let pages = [
           name : '/pdfjs',
         },
       },
+      {
+        path : '/map',
+        component : resolve => require(['@/views/map'], resolve), 
+        meta : {
+          name : '/map',
+        },
+      },
     ],
   },
 ];
