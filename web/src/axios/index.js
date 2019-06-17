@@ -24,7 +24,7 @@ axios.interceptors.request.use((rqs) => {
 
 // 响应拦截
 axios.interceptors.response.use((res) => { // 状态码 200 回调
-  if(res.data.code !== '0000'){
+  /* if(res.data.code !== '0000'){
     Message.error(res.data.message);
 
     // 登录超时
@@ -40,7 +40,7 @@ axios.interceptors.response.use((res) => { // 状态码 200 回调
     }
 
     return Promise.reject(res);
-  }
+  } */
   return res.data;
 
 }, (err) => { // 状态码不是200 回调
