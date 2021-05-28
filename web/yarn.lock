@@ -7081,10 +7081,10 @@ tiny-worker@^2.1.2:
   resolved "http://registry.npm.taobao.org/tiny-worker/download/tiny-worker-2.1.2.tgz#6feb363b87885582fdc6d91b37fe00dd612b84f2"
   integrity sha1-b+s2O4eIVYL9xtkbN/4A3WErhPI=
 
-tinymce@^4.8.1:
-  version "4.9.3"
-  resolved "http://registry.npm.taobao.org/tinymce/download/tinymce-4.9.3.tgz#c866681484282fe9ce4694124990d94eb457c344"
-  integrity sha1-yGZoFIQoL+nORpQSSZDZTrRXw0Q=
+tinymce@^5.7.1:
+  version "5.7.1"
+  resolved "https://registry.yarnpkg.com/tinymce/-/tinymce-5.7.1.tgz#658a6fb4c7d53a8496cc00f8da33f4b8290da06d"
+  integrity sha512-1gY8RClc734srSlkYwY0MQzmkS1j73PuPC+nYtNtrrQVPY9VNcZ4bOiRwzTbdjPPD8GOtv6BAk8Ww/H2RiqKpA==
 
 to-arraybuffer@^1.0.0:
   version "1.0.1"
